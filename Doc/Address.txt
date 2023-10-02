@@ -1,0 +1,66 @@
+Front screen write
+2000 - production
+2001 - Rejection
+2002 - Last pouring time
+
+Input Status screen write
+
+Address start  - 2003
+Auto/man
+cycle start
+Emergency
+Ram close switch (RC switch)
+Ram open switch (RO Switch)
+Tilting up switch (Tup switch)
+Tilting down switch (Tdn switch)
+Ejection in (EIN switch)
+Ejection output (EOT Switch)
+Slider in Switch (SIN Switch)
+Slider out switch (SOT switch)
+Motor Switch (MR Switch)
+sattion conformation (Station sig)
+Robo acknowledgment (Robo Input)
+Ram close sensor (RC sensor)
+
+Address start  - 2004
+Ram open sensor (RO sensor)
+Tilting up sensor (Tup sensor)
+Tilting down sensor (Tdn sensor)
+
+
+
+
+
+Curing - 2005
+TIlting up - 2006
+tinlting down - 2007
+slider in - 2008
+SLider out - 2009
+Ejection on - 200A
+Ejection off - 200B
+
+
+
+Setting screen 
+Curing - 3000
+TIlting up - 3001
+tinlting down - 3002
+slider in - 3003
+SLider out - 3004
+Ejection on - 3005
+Ejection off - 3006
+
+
+Write to hmi
+01 10 20 00 00 0A 14 00 6F 01 41 01 62 04 57 04 57 00 00 00 00 00 00 00 00 00 00 24 E1 01 10 20 00 00 0A 4B CE 
+
+01 10 20 00 00 0A 4B CE 
+
+
+Read from hmi
+01 03 30 00 00 0A CA CD 
+01 03 14 00 64 00 C8 01 2C 01 90 01 F4 02 58 02 BC 00 00 00 00 00 00 1A 57 
+
+
+
+
