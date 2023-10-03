@@ -63,30 +63,30 @@ void ModbusFrame(void)
 			bufftx[12] = (0 & 0xff);
 
 			bufftx[12] = (Inputs_Status & 0xff00)>>8;
-			bufftx[14] = (Inputs_Status & 0xff);
+			bufftx[13] = (Inputs_Status & 0xff);
 
-			bufftx[15] = (0 & 0xff00)>>8;
-			bufftx[16] = (0 & 0xff);
+			bufftx[14] = (0 & 0xff00)>>8;
+			bufftx[15] = (0 & 0xff);
 
-			bufftx[17] = (0 & 0xff00)>>8;
-			bufftx[18] = (0 & 0xff);
+			bufftx[16] = (0 & 0xff00)>>8;
+			bufftx[17] = (0 & 0xff);
 
-			bufftx[19] = (0 & 0xff00)>>8;
-			bufftx[20] = (0 & 0xff);
+			bufftx[18] = (0 & 0xff00)>>8;
+			bufftx[19] = (0 & 0xff);
 
-			bufftx[21] = (0 & 0xff00)>>8;
-			bufftx[22] = (0 & 0xff);
+			bufftx[20] = (0 & 0xff00)>>8;
+			bufftx[21] = (0 & 0xff);
 
-			bufftx[23] = (0 & 0xff00)>>8;
-			bufftx[24] = (0 & 0xff);
+			bufftx[22] = (0 & 0xff00)>>8;
+			bufftx[23] = (0 & 0xff);
 
-			bufftx[25] = (0 & 0xff00)>>8;
-			bufftx[26] = (0 & 0xff);
-			CRC_value = ASCChecksum(bufftx,27);
+			bufftx[24] = (0 & 0xff00)>>8;
+			bufftx[25] = (0 & 0xff);
+			CRC_value = ASCChecksum(bufftx,26);
 
-			bufftx[27] = (CRC_value & 0xff);
-			bufftx[28] = (CRC_value & 0xff00)>>8;
-			HAL_UART_Transmit_IT(&huart1,bufftx,29);
+			bufftx[26] = (CRC_value & 0xff);
+			bufftx[27] = (CRC_value & 0xff00)>>8;
+			HAL_UART_Transmit_IT(&huart1,bufftx,28);
 			Config = ReadMultileReg;
 		break;
 		default:

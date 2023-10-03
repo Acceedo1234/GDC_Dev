@@ -749,9 +749,9 @@ void gdc_businesslogic(void)
  80007be:	461a      	mov	r2, r3
  80007c0:	4b3f      	ldr	r3, [pc, #252]	; (80008c0 <gdc_businesslogic+0x260>)
  80007c2:	719a      	strb	r2, [r3, #6]
-	if(input.Tilting_Up_Switch == GPIO_PIN_SET){
+	if(input.Tilting_down_switch == GPIO_PIN_SET){
  80007c4:	4b3e      	ldr	r3, [pc, #248]	; (80008c0 <gdc_businesslogic+0x260>)
- 80007c6:	795b      	ldrb	r3, [r3, #5]
+ 80007c6:	799b      	ldrb	r3, [r3, #6]
  80007c8:	2b01      	cmp	r3, #1
  80007ca:	d107      	bne.n	80007dc <gdc_businesslogic+0x17c>
 		Inputs_Status = Inputs_Status & ~(1 << 6);
@@ -1126,68 +1126,68 @@ void ModbusFrame(void)
  8000a32:	b2da      	uxtb	r2, r3
  8000a34:	4b27      	ldr	r3, [pc, #156]	; (8000ad4 <ModbusFrame+0x174>)
  8000a36:	731a      	strb	r2, [r3, #12]
-			bufftx[14] = (Inputs_Status & 0xff);
+			bufftx[13] = (Inputs_Status & 0xff);
  8000a38:	4b2a      	ldr	r3, [pc, #168]	; (8000ae4 <ModbusFrame+0x184>)
  8000a3a:	881b      	ldrh	r3, [r3, #0]
  8000a3c:	b2da      	uxtb	r2, r3
  8000a3e:	4b25      	ldr	r3, [pc, #148]	; (8000ad4 <ModbusFrame+0x174>)
- 8000a40:	739a      	strb	r2, [r3, #14]
+ 8000a40:	735a      	strb	r2, [r3, #13]
 
-			bufftx[15] = (0 & 0xff00)>>8;
+			bufftx[14] = (0 & 0xff00)>>8;
  8000a42:	4b24      	ldr	r3, [pc, #144]	; (8000ad4 <ModbusFrame+0x174>)
  8000a44:	2200      	movs	r2, #0
- 8000a46:	73da      	strb	r2, [r3, #15]
-			bufftx[16] = (0 & 0xff);
+ 8000a46:	739a      	strb	r2, [r3, #14]
+			bufftx[15] = (0 & 0xff);
  8000a48:	4b22      	ldr	r3, [pc, #136]	; (8000ad4 <ModbusFrame+0x174>)
  8000a4a:	2200      	movs	r2, #0
- 8000a4c:	741a      	strb	r2, [r3, #16]
+ 8000a4c:	73da      	strb	r2, [r3, #15]
 
-			bufftx[17] = (0 & 0xff00)>>8;
+			bufftx[16] = (0 & 0xff00)>>8;
  8000a4e:	4b21      	ldr	r3, [pc, #132]	; (8000ad4 <ModbusFrame+0x174>)
  8000a50:	2200      	movs	r2, #0
- 8000a52:	745a      	strb	r2, [r3, #17]
-			bufftx[18] = (0 & 0xff);
+ 8000a52:	741a      	strb	r2, [r3, #16]
+			bufftx[17] = (0 & 0xff);
  8000a54:	4b1f      	ldr	r3, [pc, #124]	; (8000ad4 <ModbusFrame+0x174>)
  8000a56:	2200      	movs	r2, #0
- 8000a58:	749a      	strb	r2, [r3, #18]
+ 8000a58:	745a      	strb	r2, [r3, #17]
 
-			bufftx[19] = (0 & 0xff00)>>8;
+			bufftx[18] = (0 & 0xff00)>>8;
  8000a5a:	4b1e      	ldr	r3, [pc, #120]	; (8000ad4 <ModbusFrame+0x174>)
  8000a5c:	2200      	movs	r2, #0
- 8000a5e:	74da      	strb	r2, [r3, #19]
-			bufftx[20] = (0 & 0xff);
+ 8000a5e:	749a      	strb	r2, [r3, #18]
+			bufftx[19] = (0 & 0xff);
  8000a60:	4b1c      	ldr	r3, [pc, #112]	; (8000ad4 <ModbusFrame+0x174>)
  8000a62:	2200      	movs	r2, #0
- 8000a64:	751a      	strb	r2, [r3, #20]
+ 8000a64:	74da      	strb	r2, [r3, #19]
 
-			bufftx[21] = (0 & 0xff00)>>8;
+			bufftx[20] = (0 & 0xff00)>>8;
  8000a66:	4b1b      	ldr	r3, [pc, #108]	; (8000ad4 <ModbusFrame+0x174>)
  8000a68:	2200      	movs	r2, #0
- 8000a6a:	755a      	strb	r2, [r3, #21]
-			bufftx[22] = (0 & 0xff);
+ 8000a6a:	751a      	strb	r2, [r3, #20]
+			bufftx[21] = (0 & 0xff);
  8000a6c:	4b19      	ldr	r3, [pc, #100]	; (8000ad4 <ModbusFrame+0x174>)
  8000a6e:	2200      	movs	r2, #0
- 8000a70:	759a      	strb	r2, [r3, #22]
+ 8000a70:	755a      	strb	r2, [r3, #21]
 
-			bufftx[23] = (0 & 0xff00)>>8;
+			bufftx[22] = (0 & 0xff00)>>8;
  8000a72:	4b18      	ldr	r3, [pc, #96]	; (8000ad4 <ModbusFrame+0x174>)
  8000a74:	2200      	movs	r2, #0
- 8000a76:	75da      	strb	r2, [r3, #23]
-			bufftx[24] = (0 & 0xff);
+ 8000a76:	759a      	strb	r2, [r3, #22]
+			bufftx[23] = (0 & 0xff);
  8000a78:	4b16      	ldr	r3, [pc, #88]	; (8000ad4 <ModbusFrame+0x174>)
  8000a7a:	2200      	movs	r2, #0
- 8000a7c:	761a      	strb	r2, [r3, #24]
+ 8000a7c:	75da      	strb	r2, [r3, #23]
 
-			bufftx[25] = (0 & 0xff00)>>8;
+			bufftx[24] = (0 & 0xff00)>>8;
  8000a7e:	4b15      	ldr	r3, [pc, #84]	; (8000ad4 <ModbusFrame+0x174>)
  8000a80:	2200      	movs	r2, #0
- 8000a82:	765a      	strb	r2, [r3, #25]
-			bufftx[26] = (0 & 0xff);
+ 8000a82:	761a      	strb	r2, [r3, #24]
+			bufftx[25] = (0 & 0xff);
  8000a84:	4b13      	ldr	r3, [pc, #76]	; (8000ad4 <ModbusFrame+0x174>)
  8000a86:	2200      	movs	r2, #0
- 8000a88:	769a      	strb	r2, [r3, #26]
-			CRC_value = ASCChecksum(bufftx,27);
- 8000a8a:	211b      	movs	r1, #27
+ 8000a88:	765a      	strb	r2, [r3, #25]
+			CRC_value = ASCChecksum(bufftx,26);
+ 8000a8a:	211a      	movs	r1, #26
  8000a8c:	4811      	ldr	r0, [pc, #68]	; (8000ad4 <ModbusFrame+0x174>)
  8000a8e:	f000 f82b 	bl	8000ae8 <ASCChecksum>
  8000a92:	4603      	mov	r3, r0
@@ -1195,22 +1195,22 @@ void ModbusFrame(void)
  8000a96:	4b10      	ldr	r3, [pc, #64]	; (8000ad8 <ModbusFrame+0x178>)
  8000a98:	801a      	strh	r2, [r3, #0]
 
-			bufftx[27] = (CRC_value & 0xff);
+			bufftx[26] = (CRC_value & 0xff);
  8000a9a:	4b0f      	ldr	r3, [pc, #60]	; (8000ad8 <ModbusFrame+0x178>)
  8000a9c:	881b      	ldrh	r3, [r3, #0]
  8000a9e:	b2da      	uxtb	r2, r3
  8000aa0:	4b0c      	ldr	r3, [pc, #48]	; (8000ad4 <ModbusFrame+0x174>)
- 8000aa2:	76da      	strb	r2, [r3, #27]
-			bufftx[28] = (CRC_value & 0xff00)>>8;
+ 8000aa2:	769a      	strb	r2, [r3, #26]
+			bufftx[27] = (CRC_value & 0xff00)>>8;
  8000aa4:	4b0c      	ldr	r3, [pc, #48]	; (8000ad8 <ModbusFrame+0x178>)
  8000aa6:	881b      	ldrh	r3, [r3, #0]
  8000aa8:	0a1b      	lsrs	r3, r3, #8
  8000aaa:	b29b      	uxth	r3, r3
  8000aac:	b2da      	uxtb	r2, r3
  8000aae:	4b09      	ldr	r3, [pc, #36]	; (8000ad4 <ModbusFrame+0x174>)
- 8000ab0:	771a      	strb	r2, [r3, #28]
-			HAL_UART_Transmit_IT(&huart1,bufftx,29);
- 8000ab2:	221d      	movs	r2, #29
+ 8000ab0:	76da      	strb	r2, [r3, #27]
+			HAL_UART_Transmit_IT(&huart1,bufftx,28);
+ 8000ab2:	221c      	movs	r2, #28
  8000ab4:	4907      	ldr	r1, [pc, #28]	; (8000ad4 <ModbusFrame+0x174>)
  8000ab6:	4809      	ldr	r0, [pc, #36]	; (8000adc <ModbusFrame+0x17c>)
  8000ab8:	f003 fc14 	bl	80042e4 <HAL_UART_Transmit_IT>

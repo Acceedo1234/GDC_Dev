@@ -79,7 +79,7 @@ void gdc_businesslogic(void)
 		Inputs_Status = Inputs_Status |(1 <<5);
 	}
 	input.Tilting_down_switch 	=	HAL_GPIO_ReadPin(GPIOE,TiltingDown_Switch_Pin);
-	if(input.Tilting_Up_Switch == GPIO_PIN_SET){
+	if(input.Tilting_down_switch == GPIO_PIN_SET){
 		Inputs_Status = Inputs_Status & ~(1 << 6);
 	}else{
 		Inputs_Status = Inputs_Status |(1 <<6);
