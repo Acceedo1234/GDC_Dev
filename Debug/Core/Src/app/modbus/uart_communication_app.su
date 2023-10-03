@@ -1,2 +1,2 @@
-../Core/Src/app/modbus/uart_communication_app.c:25:6:ModbusFrame	8	static
-../Core/Src/app/modbus/uart_communication_app.c:97:10:ASCChecksum	24	static
+../Core/Src/app/modbus/uart_communication_app.c:26:6:ModbusFrame	8	static
+../Core/Src/app/modbus/uart_communication_app.c:98:10:ASCChecksum	24	static

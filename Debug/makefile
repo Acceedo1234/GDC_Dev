@@ -13,6 +13,7 @@ RM := rm -rf
 -include Core/wq5264/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/app/modbus/subdir.mk
+-include Core/Src/app/logic/subdir.mk
 -include Core/Src/subdir.mk
 -include Core/InterruptHandler/subdir.mk
 -include objects.mk

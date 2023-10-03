@@ -8,7 +8,8 @@
 #ifndef INTERRUPTHANDLER_TIMERINT_H_
 #define INTERRUPTHANDLER_TIMERINT_H_
 
-void TimerApplicationInit(void);
-
-
+extern void TimerApplicationInit(void);
+extern void InputOutputTest(void);
+extern uint8_t Flag1Sec;
+extern uint8_t Flag5msTM2;
 #endif /* INTERRUPTHANDLER_TIMERINT_H_ */

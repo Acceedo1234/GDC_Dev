@@ -9,6 +9,7 @@
 #include "main.h"
 
 #include "ace_modbus.h"
+#include "ace_businesslogic.h"
 
 #define SalveId 1
 #define FUNCTIONCODE_READMULTIPLEREG  0x03
@@ -61,8 +62,8 @@ void ModbusFrame(void)
 			bufftx[11] = (0 & 0xff00)>>8;
 			bufftx[12] = (0 & 0xff);
 
-			bufftx[12] = (0 & 0xff00)>>8;
-			bufftx[14] = (0 & 0xff);
+			bufftx[12] = (Inputs_Status & 0xff00)>>8;
+			bufftx[14] = (Inputs_Status & 0xff);
 
 			bufftx[15] = (0 & 0xff00)>>8;
 			bufftx[16] = (0 & 0xff);

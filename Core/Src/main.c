@@ -25,6 +25,7 @@
 #include "w25qxx.h"
 
 #include "uart_communication_app.h"
+#include "ace_businesslogic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,8 +70,8 @@ static void MX_USART1_UART_Init(void);
 uint8_t writeFlashBuf[10];
 uint8_t serial_1_buff[2];
 
-extern void InputOutputTest(void);
-extern uint8_t Flag1Sec;
+
+
 /* USER CODE END 0 */
 
 /**
@@ -127,6 +128,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  if(Flag5msTM2)
+	  {
+		  Flag5msTM2=0;
+		  gdc_businesslogic();
+	  }
 	  if(Flag1Sec)
 	  {
 		  Flag1Sec=0;

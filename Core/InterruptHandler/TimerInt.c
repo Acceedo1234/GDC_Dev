@@ -13,14 +13,16 @@ extern TIM_HandleTypeDef htim3;
 
 void InputOutputTest(void);
 void InputOutputTest1(void);
+void TimerApplicationInit(void);
 
-uint8_t Flag5msTM2;
 
 static uint8_t Count5ms=0;
 uint8_t Count1Sec = 0;
 uint8_t CycleStart_Switch;
 
 uint8_t Flag1Sec;
+uint8_t Flag5msTM2;
+
 extern uint16_t Production;
 
 void TimerApplicationInit(void)
