@@ -12,4 +12,5 @@ extern void TimerApplicationInit(void);
 extern void InputOutputTest(void);
 extern uint8_t Flag1Sec;
 extern uint8_t Flag5msTM2;
+extern uint8_t Flag200ms;
 #endif /* INTERRUPTHANDLER_TIMERINT_H_ */

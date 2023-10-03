@@ -133,9 +133,9 @@ int main(void)
 		  Flag5msTM2=0;
 		  gdc_businesslogic();
 	  }
-	  if(Flag1Sec)
+	  if(Flag200ms)
 	  {
-		  Flag1Sec=0;
+		  Flag200ms=0;
 		  ModbusFrame();
 	  }
 

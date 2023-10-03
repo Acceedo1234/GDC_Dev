@@ -19,8 +19,10 @@ void TimerApplicationInit(void);
 static uint8_t Count5ms=0;
 uint8_t Count1Sec = 0;
 uint8_t CycleStart_Switch;
+uint8_t Count20ms;
 
 uint8_t Flag1Sec;
+uint8_t Flag200ms;
 uint8_t Flag5msTM2;
 
 extern uint16_t Production;
@@ -39,6 +41,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		{
 			Flag5msTM2 = 1;
 			Count5ms=0;
+		}
+		if(++Count20ms >= 20){
+			Flag200ms=1;
+			Count20ms=0;
 		}
 	}
 
