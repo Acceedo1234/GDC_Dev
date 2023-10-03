@@ -41,33 +41,33 @@ void gdc_businesslogic(void)
 	/*Read the inputs*/
 	input.Auto_Manual 			=	HAL_GPIO_ReadPin(GPIOB,Auto_Manual_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Auto_Manual <<0);
-	input.cycleStart 			=	HAL_GPIO_ReadPin(GPIOB,CycleStart_Switch_Pin);
+	input.cycleStart 			=	HAL_GPIO_ReadPin(GPIOE,CycleStart_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.cycleStart <<1);
 	input.Emergency 			=	HAL_GPIO_ReadPin(GPIOB,Emergency_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Emergency <<2);
-	input.Ram_close_switch 		=	HAL_GPIO_ReadPin(GPIOB,RampClose_Switch_Pin);
+	input.Ram_close_switch 		=	HAL_GPIO_ReadPin(GPIOE,RampClose_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Ram_close_switch <<3);
-	input.Ram_Open_Switch 		=	HAL_GPIO_ReadPin(GPIOB,RampOpen_Switch_Pin);
+	input.Ram_Open_Switch 		=	HAL_GPIO_ReadPin(GPIOE,RampOpen_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Ram_Open_Switch <<4);
-	input.Tilting_Up_Switch 	=	HAL_GPIO_ReadPin(GPIOB,TiltingUp_Switch_Pin);
+	input.Tilting_Up_Switch 	=	HAL_GPIO_ReadPin(GPIOE,TiltingUp_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Tilting_Up_Switch <<5);
-	input.Tilting_down_switch 	=	HAL_GPIO_ReadPin(GPIOB,TiltingDown_Switch_Pin);
+	input.Tilting_down_switch 	=	HAL_GPIO_ReadPin(GPIOE,TiltingDown_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Tilting_down_switch <<6);
-	input.Ejection_In 			=	HAL_GPIO_ReadPin(GPIOB,EjectionIn_Switch_Pin);
+	input.Ejection_In 			=	HAL_GPIO_ReadPin(GPIOE,EjectionIn_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Ejection_In <<7);
-	input.Ejection_Output 		=	HAL_GPIO_ReadPin(GPIOB,EjectionOut_Switch_Pin);
+	input.Ejection_Output 		=	HAL_GPIO_ReadPin(GPIOE,EjectionOut_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Ejection_Output <<8);
-	input.Slider_In_Switch 		=	HAL_GPIO_ReadPin(GPIOB,SliderIn_Switch_Pin);
+	input.Slider_In_Switch 		=	HAL_GPIO_ReadPin(GPIOE,SliderIn_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Slider_In_Switch <<9);
-	input.Slider_Out_Switch 	=	HAL_GPIO_ReadPin(GPIOB,SliderOut_Pin);
+	input.Slider_Out_Switch 	=	HAL_GPIO_ReadPin(GPIOE,SliderOut_Pin);
 	Inputs_Status = Inputs_Status |(input.Slider_Out_Switch <<10);
-	input.Motor_Switch 			=	0;//HAL_GPIO_ReadPin(GPIOB,Auto_Manual_Switch_Pin);
+	input.Motor_Switch 			=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Motor_Switch <<11);
-	input.Station_Conformation 	=	0;//HAL_GPIO_ReadPin(GPIOB,Auto_Manual_Switch_Pin);
+	input.Station_Conformation 	=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Station_Conformation <<12);
-	input.Robo_Acknowledgment 	=	0;//HAL_GPIO_ReadPin(GPIOB,Auto_Manual_Switch_Pin);
+	input.Robo_Acknowledgment 	=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Robo_Acknowledgment <<13);
-	input.Ram_Close_Sensor 		=	0;//HAL_GPIO_ReadPin(GPIOB,Auto_Manual_Switch_Pin);
+	input.Ram_Close_Sensor 		=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
 	Inputs_Status = Inputs_Status |(input.Ram_Close_Sensor <<14);
 
 
