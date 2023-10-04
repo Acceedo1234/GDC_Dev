@@ -1,2 +1,4 @@
-../Core/Src/app/modbus/uart_communication_app.c:26:6:ModbusFrame	8	static
-../Core/Src/app/modbus/uart_communication_app.c:98:10:ASCChecksum	24	static
+../Core/Src/app/modbus/uart_communication_app.c:28:6:ModbusFrame	8	static
+../Core/Src/app/modbus/uart_communication_app.c:100:10:ASCChecksum	24	static
+../Core/Src/app/modbus/uart_communication_app.c:119:6:ModbusInit	8	static
+../Core/Src/app/modbus/uart_communication_app.c:124:6:Dwin_Rx_Decoder	4	static

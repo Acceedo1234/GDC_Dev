@@ -49,6 +49,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/STM32F107VCT7_GDC/Core/wq5264}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/STM32F107VCT7_GDC/Core/Src/app/modbus}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/STM32F107VCT7_GDC/Core/Src/app/logic}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/STM32F107VCT7_GDC/Core/Src/app/common}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1432464357" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>

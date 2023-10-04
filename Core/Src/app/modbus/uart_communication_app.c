@@ -10,6 +10,7 @@
 
 #include "ace_modbus.h"
 #include "ace_businesslogic.h"
+#include "uart_handler.h"
 
 #define SalveId 1
 #define FUNCTIONCODE_READMULTIPLEREG  0x03
@@ -22,6 +23,7 @@
 #define NO_OF_WRITEDATA  0x0A
 
 uint16_t Production;
+uint8_t DWINRxData[64];
 
 void ModbusFrame(void)
 {
@@ -111,6 +113,18 @@ uint16_t ASCChecksum(uint8_t *ASCSrc, uint8_t NoOfBytes)
 
 	}
 	return (CRCRegHigh << 8 | CRCRegLow );
+}
+
+
+void ModbusInit(void)
+{
+	HAL_UARTEx_ReceiveToIdle_IT(&huart1, DWINRxData, 64);
+}
+
+void Dwin_Rx_Decoder(void)
+{
+if(!dwin_rx_multipledata_completed){return;}
+dwin_rx_multipledata_completed=0;
 }
 
 

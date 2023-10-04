@@ -14,6 +14,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/app/modbus/subdir.mk
 -include Core/Src/app/logic/subdir.mk
+-include Core/Src/app/common/subdir.mk
 -include Core/Src/subdir.mk
 -include Core/InterruptHandler/subdir.mk
 -include objects.mk
@@ -64,8 +65,8 @@ all: main-build
 main-build: STM32F107VCT7_GDC.elf secondary-outputs
 
 # Tool invocations
-STM32F107VCT7_GDC.elf STM32F107VCT7_GDC.map: $(OBJS) $(USER_OBJS) D:\SourceTree\GDC_dev\STM32F107VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F107VCT7_GDC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\SourceTree\GDC_dev\STM32F107VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F107VCT7_GDC.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F107VCT7_GDC.elf STM32F107VCT7_GDC.map: $(OBJS) $(USER_OBJS) D:\SourceTree\gdc_dev\STM32F107VCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F107VCT7_GDC.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\SourceTree\gdc_dev\STM32F107VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F107VCT7_GDC.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

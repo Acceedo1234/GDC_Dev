@@ -117,7 +117,7 @@ int main(void)
   W25qxx_EraseSector(0);
   W25qxx_WriteSector(writeFlashBuf,0,0,1);
 
-
+  ModbusInit();
  // HAL_UART_Receive_IT(&huart1,serial_1_buff, 1);
 
   InputOutputTest();
@@ -137,6 +137,7 @@ int main(void)
 	  {
 		  Flag200ms=0;
 		  ModbusFrame();
+		  Dwin_Rx_Decoder();
 	  }
 
     /* USER CODE BEGIN 3 */

@@ -1,5 +1,6 @@
 "./Core/InterruptHandler/SerialInt.o"
 "./Core/InterruptHandler/TimerInt.o"
+"./Core/Src/app/common/uart_handler.o"
 "./Core/Src/app/logic/ace_businesslogic.o"
 "./Core/Src/app/modbus/uart_communication_app.o"
 "./Core/Src/main.o"
