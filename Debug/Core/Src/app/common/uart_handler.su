@@ -1,1 +1,0 @@
-../Core/Src/app/common/uart_handler.c:12:6:HAL_UARTEx_RxEventCallback	16	static

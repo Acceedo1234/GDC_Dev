@@ -24,6 +24,7 @@
 
 uint16_t Production;
 uint8_t DWINRxData[64];
+uint16_t RxNoOfData;
 
 void ModbusFrame(void)
 {
@@ -42,6 +43,7 @@ void ModbusFrame(void)
 			bufftx[6] = (CRC_value & 0xff);
 			bufftx[7] = (CRC_value & 0xff00)>>8;
 			HAL_UART_Transmit_IT(&huart1,bufftx,8);
+			RxNoOfData=(NO_OF_READDATA*2)+5;
 			Config = WriteMultipleReg;
 		break;
 		case WriteMultipleReg:
@@ -88,6 +90,7 @@ void ModbusFrame(void)
 
 			bufftx[27] = (CRC_value & 0xff);
 			bufftx[28] = (CRC_value & 0xff00)>>8;
+			RxNoOfData=8;
 			HAL_UART_Transmit_IT(&huart1,bufftx,29);
 			Config = ReadMultileReg;
 		break;

@@ -9,7 +9,7 @@
 uint8_t dwin_scan;
 uint16_t dwin_rx_multipledata[20];
 uint8_t dwin_rx_multipledata_completed;
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	if(DWINRxData[0]==1)
 	{
@@ -23,4 +23,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		}
 	}
 
+}
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+	HAL_UART_Receive_IT(&huart1,DWINRxData,DWINRxData);
 }

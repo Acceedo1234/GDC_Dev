@@ -13,5 +13,6 @@ extern void ModbusInit(void);
 extern void Dwin_Rx_Decoder(void);
 
 extern uint8_t DWINRxData[64];
+extern uint16_t RxNoOfData;
 
 #endif /* SRC_APP_MODBUS_UART_COMMUNICATION_APP_H_ */
