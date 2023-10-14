@@ -11,5 +11,6 @@
 
 extern uint16_t dwin_rx_multipledata[20];
 extern uint8_t dwin_rx_multipledata_completed;
+extern uint8_t Trigger_Hmi_Data_Save;
 
 #endif /* SRC_APP_COMMON_UART_HANDLER_H_ */

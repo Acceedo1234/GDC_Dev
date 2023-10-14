@@ -36,6 +36,15 @@ typedef struct
 Hw_Inputs input;
 Hw_Outputs output;
 uint16_t Inputs_Status;
+uint16_t Inputs_Status;
+
+uint16_t TIltingup;
+uint16_t tinltingdown;
+uint16_t CuringTime;
+uint16_t sliderin;
+uint16_t SLiderout;
+uint16_t Ejectionon;
+uint16_t Ejectionoff;
 
 void gdc_businesslogic(void)
 {

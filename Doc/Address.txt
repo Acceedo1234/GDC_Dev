@@ -42,13 +42,13 @@ Ejection off - 200B
 
 
 Setting screen 
-Curing - 3000
-TIlting up - 3001
-tinlting down - 3002
-slider in - 3003
-SLider out - 3004
-Ejection on - 3005
-Ejection off - 3006
+CuringTime - 3000
+TIltingup - 3001
+tinltingdown - 3002
+sliderin - 3003
+SLiderout - 3004
+Ejectionon - 3005
+Ejectionoff - 3006
 
 
 Write to hmi

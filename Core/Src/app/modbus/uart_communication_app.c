@@ -12,6 +12,8 @@
 #include "ace_businesslogic.h"
 #include "uart_handler.h"
 
+extern UART_HandleTypeDef huart1;
+
 #define SalveId 1
 #define FUNCTIONCODE_READMULTIPLEREG  0x03
 #define FUNCTIONCODE_WRITEMULTIPLEREG 0x10
@@ -72,20 +74,20 @@ void ModbusFrame(void)
 			bufftx[15] = (0 & 0xff00)>>8;
 			bufftx[16] = (0 & 0xff);
 
-			bufftx[17] = (0 & 0xff00)>>8;
-			bufftx[18] = (0 & 0xff);
+			bufftx[17] = (CuringTime & 0xff00)>>8;//2005
+			bufftx[18] = (CuringTime & 0xff);
 
-			bufftx[19] = (0 & 0xff00)>>8;
-			bufftx[20] = (0 & 0xff);
+			bufftx[19] = (TIltingup & 0xff00)>>8;
+			bufftx[20] = (TIltingup & 0xff);
 
-			bufftx[21] = (0 & 0xff00)>>8;
-			bufftx[22] = (0 & 0xff);
+			bufftx[21] = (tinltingdown & 0xff00)>>8;
+			bufftx[22] = (tinltingdown & 0xff);
 
-			bufftx[23] = (0 & 0xff00)>>8;
-			bufftx[24] = (0 & 0xff);
+			bufftx[23] = (sliderin & 0xff00)>>8;
+			bufftx[24] = (sliderin & 0xff);
 
-			bufftx[25] = (0 & 0xff00)>>8;
-			bufftx[26] = (0 & 0xff);
+			bufftx[25] = (SLiderout & 0xff00)>>8;
+			bufftx[26] = (SLiderout & 0xff);
 			CRC_value = ASCChecksum(bufftx,27);
 
 			bufftx[27] = (CRC_value & 0xff);

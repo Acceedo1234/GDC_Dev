@@ -133,9 +133,9 @@ int main(void)
 		  Flag5msTM2=0;
 		  gdc_businesslogic();
 	  }
-	  if(Flag200ms)
+	  if(Flag500ms)
 	  {
-		  Flag200ms=0;
+		  Flag500ms=0;
 		  ModbusFrame();
 		  Dwin_Rx_Decoder();
 	  }

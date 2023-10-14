@@ -6,26 +6,33 @@
  */
 #include "main.h"
 #include "uart_communication_app.h"
+#include "ace_businesslogic.h"
+
+extern UART_HandleTypeDef huart1;
+
 uint8_t dwin_scan;
 uint16_t dwin_rx_multipledata[20];
 uint8_t dwin_rx_multipledata_completed;
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart, uint16_t Size)
+uint8_t Trigger_Hmi_Data_Save;
+
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	if(DWINRxData[0]==1)
+	if((DWINRxData[1] == 0x03)&&(DWINRxData[2] == 0x14))
 	{
-		if(DWINRxData[1]==0x03)
-		{
-			for(dwin_scan=0;dwin_scan<DWINRxData[3];dwin_scan++)
-			{
-				dwin_rx_multipledata[dwin_scan]= (DWINRxData[4+dwin_scan]<<8|DWINRxData[5+dwin_scan]);
-			}
-			dwin_rx_multipledata_completed=1;
-		}
+		CuringTime = (DWINRxData[3]<<8 | DWINRxData[4]);
+		TIltingup = (DWINRxData[5]<<8 | DWINRxData[6]);
+		tinltingdown = (DWINRxData[7]<<8 | DWINRxData[8]);
+		sliderin = (DWINRxData[9]<<8 | DWINRxData[10]);
+		SLiderout = (DWINRxData[11]<<8 | DWINRxData[12]);
+		Ejectionon = (DWINRxData[13]<<8 | DWINRxData[14]);
+		Ejectionoff = (DWINRxData[15]<<8 | DWINRxData[16]);
+		Trigger_Hmi_Data_Save =1;
 	}
 
 }
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
-	HAL_UART_Receive_IT(&huart1,DWINRxData,DWINRxData);
+	HAL_UART_Receive_IT(&huart1,DWINRxData,RxNoOfData);
 }

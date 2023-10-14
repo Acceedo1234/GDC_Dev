@@ -20,10 +20,12 @@ static uint8_t Count5ms=0;
 uint8_t Count1Sec = 0;
 uint8_t CycleStart_Switch;
 uint8_t Count20ms;
+uint8_t Count500ms;
 
 uint8_t Flag1Sec;
 uint8_t Flag200ms;
 uint8_t Flag5msTM2;
+uint8_t Flag500ms;
 
 extern uint16_t Production;
 
@@ -56,6 +58,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			Count1Sec=0;
 			Flag1Sec = 1;
 			if(++Production > 1000){Production=0;}
+		}
+		if(++Count500ms >= 4)
+		{
+			Count500ms=0;
+			Flag500ms = 1;
 		}
 		InputOutputTest1();
 	}
