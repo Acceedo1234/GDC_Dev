@@ -12,6 +12,7 @@ RM := rm -rf
 -include Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
 -include Core/wq5264/subdir.mk
 -include Core/Startup/subdir.mk
+-include Core/Src/app/serialflashmemory/subdir.mk
 -include Core/Src/app/modbus/subdir.mk
 -include Core/Src/app/logic/subdir.mk
 -include Core/Src/app/common/subdir.mk

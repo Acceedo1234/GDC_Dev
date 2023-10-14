@@ -25,6 +25,7 @@ Core/InterruptHandler \
 Core/Src/app/common \
 Core/Src/app/logic \
 Core/Src/app/modbus \
+Core/Src/app/serialflashmemory \
 Core/Src \
 Core/Startup \
 Core/wq5264 \

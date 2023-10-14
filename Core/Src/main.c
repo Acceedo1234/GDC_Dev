@@ -22,7 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "TimerInt.h"
-#include "w25qxx.h"
+#include "flashmemory.h"
 
 #include "uart_communication_app.h"
 #include "ace_businesslogic.h"
@@ -67,7 +67,7 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t writeFlashBuf[10];
+
 uint8_t serial_1_buff[2];
 
 
@@ -109,15 +109,10 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   TimerApplicationInit();
-  W25qxx_Init();
 
-  W25qxx_ReadSector(writeFlashBuf,0,0,1);
-
-  writeFlashBuf[0] = writeFlashBuf[0]+1;
-  W25qxx_EraseSector(0);
-  W25qxx_WriteSector(writeFlashBuf,0,0,1);
 
   ModbusInit();
+  flashmemoryinit();
  // HAL_UART_Receive_IT(&huart1,serial_1_buff, 1);
 
   InputOutputTest();
@@ -138,6 +133,7 @@ int main(void)
 		  Flag500ms=0;
 		  ModbusFrame();
 		  Dwin_Rx_Decoder();
+		  flashmemoryroutine();
 	  }
 
     /* USER CODE BEGIN 3 */

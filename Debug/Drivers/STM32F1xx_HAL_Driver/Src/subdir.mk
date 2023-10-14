@@ -58,7 +58,7 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32F1xx_HAL_Driver/Src/%.o Drivers/STM32F1xx_HAL_Driver/Src/%.su: ../Drivers/STM32F1xx_HAL_Driver/Src/%.c Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"D:/SourceTree/gdc_dev/Core/InterruptHandler" -I"D:/SourceTree/gdc_dev/Core/wq5264" -I"D:/SourceTree/gdc_dev/Core/Src/app/modbus" -I"D:/SourceTree/gdc_dev/Core/Src/app/logic" -I"D:/SourceTree/gdc_dev/Core/Src/app/common" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F107xC -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"D:/SourceTree/gdc_dev/Core/InterruptHandler" -I"D:/SourceTree/gdc_dev/Core/wq5264" -I"D:/SourceTree/gdc_dev/Core/Src/app/modbus" -I"D:/SourceTree/gdc_dev/Core/Src/app/logic" -I"D:/SourceTree/gdc_dev/Core/Src/app/common" -I"D:/SourceTree/gdc_dev/Core/Src/app/serialflashmemory" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 
 clean: clean-Drivers-2f-STM32F1xx_HAL_Driver-2f-Src
 
