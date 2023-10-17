@@ -9,6 +9,8 @@
 #include "uart_handler.h"
 #include "ace_businesslogic.h"
 
+#define HMIDATASECTOR 0
+
 uint8_t writeFlashBuf[10];
 
 uint8_t databuffer_sector_zero[10];
@@ -40,13 +42,14 @@ void flashmemoryroutine(void)
 		databuffer_sector_zero[12] = (Ejectionoff & 0xff00)>>8;
 		databuffer_sector_zero[13] = (Ejectionoff & 0xff);
 		W25qxx_EraseSector(0);
-		W25qxx_WriteSector(databuffer_sector_zero,0,0,14);
+		W25qxx_WriteSector(databuffer_sector_zero,HMIDATASECTOR,0,14);
+
 	}
 }
 
 void flashmemoryread(void)
 {
-	W25qxx_ReadSector(writeFlashBuf,0,0,14);
+	W25qxx_ReadSector(writeFlashBuf,HMIDATASECTOR,0,14);
 	CuringTime 		= (databuffer_sector_zero[0]<<8 | databuffer_sector_zero[1]);
 	TIltingup 		= (databuffer_sector_zero[2]<<8 | databuffer_sector_zero[3]);
 	tinltingdown 	= (databuffer_sector_zero[4]<<8 | databuffer_sector_zero[5]);
@@ -54,5 +57,12 @@ void flashmemoryread(void)
 	SLiderout 		= (databuffer_sector_zero[8]<<8 | databuffer_sector_zero[9]);
 	Ejectionon 		= (databuffer_sector_zero[10]<<8 | databuffer_sector_zero[11]);
 	Ejectionoff 	= (databuffer_sector_zero[12]<<8 | databuffer_sector_zero[13]);
+	CuringTime_k1 = CuringTime;
+	TIltingup_k1 = TIltingup;
+	tinltingdown_k1 = tinltingdown;
+	SLiderout_k1 = SLiderout;
+	sliderin_k1=sliderin;
+	Ejectionon_k1 =Ejectionon;
+	Ejectionoff_k1=Ejectionoff;
 }
 
