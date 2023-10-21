@@ -13,7 +13,7 @@
 
 uint8_t writeFlashBuf[10];
 
-uint8_t databuffer_sector_zero[10];
+uint8_t databuffer_sector_zero[20];
 void flashmemoryread(void);
 
 void flashmemoryinit(void){
@@ -49,7 +49,7 @@ void flashmemoryroutine(void)
 
 void flashmemoryread(void)
 {
-	W25qxx_ReadSector(writeFlashBuf,HMIDATASECTOR,0,14);
+	W25qxx_ReadSector(databuffer_sector_zero,HMIDATASECTOR,0,14);
 	CuringTime 		= (databuffer_sector_zero[0]<<8 | databuffer_sector_zero[1]);
 	TIltingup 		= (databuffer_sector_zero[2]<<8 | databuffer_sector_zero[3]);
 	tinltingdown 	= (databuffer_sector_zero[4]<<8 | databuffer_sector_zero[5]);

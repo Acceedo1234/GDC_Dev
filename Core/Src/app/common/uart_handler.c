@@ -29,6 +29,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		SLiderout 		= (DWINRxData[11]<<8 | DWINRxData[12]);
 		Ejectionon 		= (DWINRxData[13]<<8 | DWINRxData[14]);
 		Ejectionoff 	= (DWINRxData[15]<<8 | DWINRxData[16]);
+
 		if(((CuringTime != CuringTime_k1)&&(CuringTime > 0))||((TIltingup != TIltingup_k1)&&(TIltingup>0))
 		||((tinltingdown != tinltingdown_k1)&&(tinltingdown>0))||((sliderin != sliderin_k1)&&(sliderin>0))
 		||((SLiderout != SLiderout_k1)&&(SLiderout>0))||((Ejectionon != Ejectionon_k1)&&(Ejectionon>0))
@@ -37,7 +38,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			Trigger_Hmi_Data_Save =1;
 		}
 
-
+		CuringTime_k1 = CuringTime;
+		TIltingup_k1 = TIltingup;
+		tinltingdown_k1 = tinltingdown;
+		sliderin_k1 = sliderin;
+		SLiderout_k1 = SLiderout;
+		Ejectionon_k1 = Ejectionon;
+		Ejectionoff_k1 = Ejectionoff;
 	}
 
 }
