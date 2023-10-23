@@ -28,8 +28,8 @@ Core/Src/app/modbus/uart_communication_app.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Src/app/modbus/ace_modbus.h \
- E:/SourceTree/GDC_dev/Core/Src/app/logic/ace_businesslogic.h \
- E:/SourceTree/GDC_dev/Core/Src/app/common/uart_handler.h
+ D:/SourceTree/gdc_dev/Core/Src/app/logic/ace_businesslogic.h \
+ D:/SourceTree/gdc_dev/Core/Src/app/common/uart_handler.h
 ../Core/Src/app/modbus/uart_communication_app.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -59,5 +59,5 @@ Core/Src/app/modbus/uart_communication_app.o: \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Src/app/modbus/ace_modbus.h:
-E:/SourceTree/GDC_dev/Core/Src/app/logic/ace_businesslogic.h:
-E:/SourceTree/GDC_dev/Core/Src/app/common/uart_handler.h:
+D:/SourceTree/gdc_dev/Core/Src/app/logic/ace_businesslogic.h:
+D:/SourceTree/gdc_dev/Core/Src/app/common/uart_handler.h:

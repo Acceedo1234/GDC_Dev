@@ -23,9 +23,6 @@
 #define decode_Robo_Acknowledgment 13
 #define decode_Ram_Close_Sensor 14
 
-#define ON 1
-#define OFF 0
-
 #define BITREAD(value,nbit) ((value) & (1<<nbit))
 
 typedef struct
@@ -41,10 +38,13 @@ typedef struct
 	GPIO_PinState Ejection_Output;
 	GPIO_PinState Slider_In_Switch;
 	GPIO_PinState Slider_Out_Switch;
-	GPIO_PinState Motor_Switch;
+	GPIO_PinState MotorOn_Switch;
+	GPIO_PinState MotorOff_Switch;
 	GPIO_PinState Station_Conformation;
 	GPIO_PinState Robo_Acknowledgment;
+	GPIO_PinState Ram_Open_Sensor;
 	GPIO_PinState Ram_Close_Sensor;
+	GPIO_PinState TiltingDown_Sensor;
 }Hw_Inputs;
 
 typedef struct
@@ -69,8 +69,8 @@ uint16_t Ejectionoff;
 
 uint8_t current_state_auto;
 
-void Auto_business_logic(uint16_t input_status);
-void Manual_business_logic(uint16_t input_status);
+void Auto_business_logic(const Hw_Inputs);
+void Manual_business_logic(const Hw_Inputs);
 
 void gdc_businesslogic(void)
 {
@@ -140,41 +140,70 @@ void gdc_businesslogic(void)
 	input.Slider_Out_Switch 	=	HAL_GPIO_ReadPin(GPIOE,SliderOut_Switch_Pin);
 	if(input.Slider_Out_Switch == GPIO_PIN_SET){
 		Inputs_Status = Inputs_Status & ~(1 << 10);
+
 	}else{
 		Inputs_Status = Inputs_Status |(1 <<10);
 	}
-	input.Motor_Switch 			=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
-	Inputs_Status = Inputs_Status |(input.Motor_Switch <<11);
-	input.Station_Conformation 	=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
-	Inputs_Status = Inputs_Status |(input.Station_Conformation <<12);
-	input.Robo_Acknowledgment 	=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
-	Inputs_Status = Inputs_Status |(input.Robo_Acknowledgment <<13);
-	input.Ram_Close_Sensor 		=	0;//HAL_GPIO_ReadPin(GPIOE,Auto_Manual_Switch_Pin);
-	Inputs_Status = Inputs_Status |(input.Ram_Close_Sensor <<14);
+	input.MotorOn_Switch 			=	HAL_GPIO_ReadPin(GPIOB,MotorON_Switch_Pin);
+	if(input.MotorOn_Switch == GPIO_PIN_SET){
+		Inputs_Status = Inputs_Status & ~(1 << 11);
 
+	}else{
+		Inputs_Status = Inputs_Status |(1 <<11);
+	}
+	input.MotorOff_Switch 			=	HAL_GPIO_ReadPin(GPIOB,MotorOff_Switch_Pin);
+	if(input.MotorOff_Switch == GPIO_PIN_SET){
+		Inputs_Status = Inputs_Status & ~(1 << 12);
+
+	}else{
+		Inputs_Status = Inputs_Status |(1 <<12);
+	}
+	input.Station_Conformation 			=	HAL_GPIO_ReadPin(GPIOA,StationInfo_Sensor_Pin);
+	if(input.Station_Conformation == GPIO_PIN_SET){
+		Inputs_Status = Inputs_Status & ~(1 << 13);
+
+	}else{
+		Inputs_Status = Inputs_Status |(1 <<13);
+	}
+	input.Robo_Acknowledgment 			=	HAL_GPIO_ReadPin(GPIOA,Robo_Ack_Input_Pin);
+	if(input.Robo_Acknowledgment == GPIO_PIN_SET){
+		Inputs_Status = Inputs_Status & ~(1 << 14);
+
+	}else{
+		Inputs_Status = Inputs_Status |(1 <<14);
+	}
+	input.Ram_Open_Sensor 			=	HAL_GPIO_ReadPin(GPIOC,Rampopen_sensor_Pin);
+	if(input.Ram_Open_Sensor == GPIO_PIN_SET){
+		Inputs_Status = Inputs_Status & ~(1 << 15);
+
+	}else{
+		Inputs_Status = Inputs_Status |(1 <<15);
+	}
+	input.Ram_Close_Sensor 			=	HAL_GPIO_ReadPin(GPIOC,Rampclose_sensor_Pin);
+	input.TiltingDown_Sensor 			=	HAL_GPIO_ReadPin(GPIOC,Tiltingdown_sensor_Pin);
 	if(input.Auto_Manual == GPIO_PIN_SET){//execute auto code
-		Auto_business_logic(Inputs_Status);
+		Auto_business_logic(input);
 	}
 	else{//execute manual code
-		Manual_business_logic(Inputs_Status);
+		Manual_business_logic(input);
 	}
 }
 
 
-void Auto_business_logic(uint16_t input_status)
+void Auto_business_logic(const Hw_Inputs input_status)
 {
 	switch(current_state_auto)
 	{
 		case 0://wait for cycle start
 			current_state_auto=0;
-			if(BITREAD(input_status,decode_cycleStart) == ON){
+			if(input_status.cycleStart == GPIO_PIN_RESET){
 				current_state_auto=1;
 			}
 		break;
 		case 1://Check preconditions
-			if((BITREAD(input_status,decode_ramcloseswitch) == OFF)&&(BITREAD(input_status,decode_ramopenswitch) == ON))
+			if((input_status.Ram_Close_Sensor== GPIO_PIN_SET)&&(input_status.Ram_Open_Sensor == GPIO_PIN_RESET))
 			{
-				//if(BITREAD(input_status,decode_ramcloseswitch))
+
 			}
 		break;
 
@@ -183,7 +212,9 @@ void Auto_business_logic(uint16_t input_status)
 	}
 }
 
-void Manual_business_logic(uint16_t input_status)
+void Manual_business_logic(const Hw_Inputs input_status)
 {
-
+	if(input_status.Ram_Open_Switch == GPIO_PIN_RESET){
+		HAL_GPIO_WritePin(GPIOD,RampOpen_valve_Pin,GPIO_PIN_SET);
+	}
 }
