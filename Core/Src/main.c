@@ -125,6 +125,19 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  if(Flag5msTM2)
+	  {
+		  Flag5msTM2=0;
+		  gdc_businesslogic();
+	  }
+	  if(Flag500ms)
+	  {
+		  Flag500ms=0;
+		  ModbusFrame();
+		  Dwin_Rx_Decoder();
+		  flashmemoryroutine();
+
+	  }
   }
   /* USER CODE END 3 */
 }
