@@ -70,10 +70,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 void InputOutputTest(void)
 {
-	HAL_GPIO_WritePin(GPIOD, MotorOn_Pin|MotorOff_Pin|RampOpen_Pin|RampCLose_Pin
+/*	HAL_GPIO_WritePin(GPIOD, MotorOn_Pin|MotorOff_Pin|RampOpen_Pin|RampCLose_Pin
 	                          |TiltingUp_Pin|TiltingDown_Pin|SkiderOut_Pin|SliderIn_Pin, GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(GPIOC, EjectionOn_Pin|EjectionOff_Pin|RoboRelay_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC, EjectionOn_Pin|EjectionOff_Pin|RoboRelay_Pin, GPIO_PIN_SET);*/
 
 }
 

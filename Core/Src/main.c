@@ -123,18 +123,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(Flag5msTM2)
-	  {
-		  Flag5msTM2=0;
-		  gdc_businesslogic();
-	  }
-	  if(Flag500ms)
-	  {
-		  Flag500ms=0;
-		  ModbusFrame();
-		  Dwin_Rx_Decoder();
-		  flashmemoryroutine();
-	  }
 
     /* USER CODE BEGIN 3 */
   }
@@ -360,21 +348,27 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, _W25QXX_CS_PIN_Pin_Pin|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10
                           |GPIO_PIN_11|GPIO_PIN_12, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, MotorOn_Pin|MotorOff_Pin|RampOpen_Pin|RampCLose_Pin
-                          |TiltingUp_Pin|TiltingDown_Pin|SkiderOut_Pin|SliderIn_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, MotorOn_valve_Pin|MotorOff_valve_Pin|RampOpen_valve_Pin|RampCLose_valve_Pin
+                          |TiltingUp_valve_Pin|TiltingDown_valve_Pin|SkiderOut_valve_Pin|SliderIn_valve_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, EjectionOn_Pin|EjectionOff_Pin|RoboRelay_Pin|GPIO_PIN_9, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, EjectionOn_valve_Pin|EjectionOff_valve_Pin|RoboRelay_output_Pin|GPIO_PIN_9, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : Robo_Ack_Input_Pin StationInfo_Sensor_Pin Tiltingdown_sensor_Pin */
+  GPIO_InitStruct.Pin = Robo_Ack_Input_Pin|StationInfo_Sensor_Pin|Tiltingdown_sensor_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : _W25QXX_CS_PIN_Pin_Pin PA8 PA9 PA10
                            PA11 PA12 */
@@ -385,33 +379,39 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : CycleStart_Switch_Pin SliderIn_Switch_Pin SliderOut_Pin EjectionOut_Switch_Pin
+  /*Configure GPIO pins : Rampclose_sensor_Pin Rampopen_sensor_Pin */
+  GPIO_InitStruct.Pin = Rampclose_sensor_Pin|Rampopen_sensor_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : MotorOff_Switch_Pin MotorON_Switch_Pin Emergency_Switch_Pin Auto_Manual_Switch_Pin */
+  GPIO_InitStruct.Pin = MotorOff_Switch_Pin|MotorON_Switch_Pin|Emergency_Switch_Pin|Auto_Manual_Switch_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : CycleStart_Switch_Pin SliderIn_Switch_Pin SliderOut_Switch_Pin EjectionOut_Switch_Pin
                            EjectionIn_Switch_Pin TiltingDown_Switch_Pin TiltingUp_Switch_Pin RampClose_Switch_Pin
                            RampOpen_Switch_Pin */
-  GPIO_InitStruct.Pin = CycleStart_Switch_Pin|SliderIn_Switch_Pin|SliderOut_Pin|EjectionOut_Switch_Pin
+  GPIO_InitStruct.Pin = CycleStart_Switch_Pin|SliderIn_Switch_Pin|SliderOut_Switch_Pin|EjectionOut_Switch_Pin
                           |EjectionIn_Switch_Pin|TiltingDown_Switch_Pin|TiltingUp_Switch_Pin|RampClose_Switch_Pin
                           |RampOpen_Switch_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Emergency_Switch_Pin Auto_Manual_Switch_Pin */
-  GPIO_InitStruct.Pin = Emergency_Switch_Pin|Auto_Manual_Switch_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : MotorOn_Pin MotorOff_Pin RampOpen_Pin RampCLose_Pin
-                           TiltingUp_Pin TiltingDown_Pin SkiderOut_Pin SliderIn_Pin */
-  GPIO_InitStruct.Pin = MotorOn_Pin|MotorOff_Pin|RampOpen_Pin|RampCLose_Pin
-                          |TiltingUp_Pin|TiltingDown_Pin|SkiderOut_Pin|SliderIn_Pin;
+  /*Configure GPIO pins : MotorOn_valve_Pin MotorOff_valve_Pin RampOpen_valve_Pin RampCLose_valve_Pin
+                           TiltingUp_valve_Pin TiltingDown_valve_Pin SkiderOut_valve_Pin SliderIn_valve_Pin */
+  GPIO_InitStruct.Pin = MotorOn_valve_Pin|MotorOff_valve_Pin|RampOpen_valve_Pin|RampCLose_valve_Pin
+                          |TiltingUp_valve_Pin|TiltingDown_valve_Pin|SkiderOut_valve_Pin|SliderIn_valve_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : EjectionOn_Pin EjectionOff_Pin RoboRelay_Pin PC9 */
-  GPIO_InitStruct.Pin = EjectionOn_Pin|EjectionOff_Pin|RoboRelay_Pin|GPIO_PIN_9;
+  /*Configure GPIO pins : EjectionOn_valve_Pin EjectionOff_valve_Pin RoboRelay_output_Pin PC9 */
+  GPIO_InitStruct.Pin = EjectionOn_valve_Pin|EjectionOff_valve_Pin|RoboRelay_output_Pin|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

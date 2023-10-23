@@ -23,8 +23,8 @@
 #define decode_Robo_Acknowledgment 13
 #define decode_Ram_Close_Sensor 14
 
-#define ON 0
-#define OFF 1
+#define ON 1
+#define OFF 0
 
 #define BITREAD(value,nbit) ((value) & (1<<nbit))
 
@@ -137,7 +137,7 @@ void gdc_businesslogic(void)
 	}else{
 		Inputs_Status = Inputs_Status |(1 <<9);
 	}
-	input.Slider_Out_Switch 	=	HAL_GPIO_ReadPin(GPIOE,SliderOut_Pin);
+	input.Slider_Out_Switch 	=	HAL_GPIO_ReadPin(GPIOE,SliderOut_Switch_Pin);
 	if(input.Slider_Out_Switch == GPIO_PIN_SET){
 		Inputs_Status = Inputs_Status & ~(1 << 10);
 	}else{
