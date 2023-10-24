@@ -7,6 +7,9 @@
 
 #include "main.h"
 #include "TimerInt.h"
+#include "ace_businesslogic.h"
+
+#define Set_Offset_Slider_Time 300
 
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
@@ -21,11 +24,13 @@ uint8_t Count1Sec = 0;
 uint8_t CycleStart_Switch;
 uint8_t Count20ms;
 uint8_t Count500ms;
+uint16_t Start_Offset_Slider_Counter;
 
 uint8_t Flag1Sec;
 uint8_t Flag200ms;
 uint8_t Flag5msTM2;
 uint8_t Flag500ms;
+uint8_t Complete_Offset_Timer_Slider;
 
 extern uint16_t Production;
 
@@ -58,6 +63,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			Count1Sec=0;
 			Flag1Sec = 1;
 			if(++Production > 1000){Production=0;}
+			if(Start_Offset_Slider_Timer)
+			{
+				if(++Start_Offset_Slider_Counter >= Set_Offset_Slider_Time)
+				{
+					Start_Offset_Slider_Counter=0;
+					Start_Offset_Slider_Timer=0;
+					Complete_Offset_Timer_Slider=1;
+				}
+			}
 		}
 		if(++Count500ms >= 4)
 		{

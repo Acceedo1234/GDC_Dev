@@ -6,6 +6,9 @@
  */
 #include "main.h"
 #include "ace_businesslogic.h"
+#include "TimerInt.h"
+
+#define SLIDERVALVE 1
 
 #define decode_automanual 0
 #define decode_cycleStart 1
@@ -68,6 +71,16 @@ uint16_t Ejectionon;
 uint16_t Ejectionoff;
 
 uint8_t current_state_auto;
+uint8_t Start_Offset_Slider_Timer;
+uint8_t Start_Offset_RampClose_Timer;
+uint8_t Start_Offset_Tilting_Timer;
+uint8_t Start_Hold_Pouringwait_Timer;
+uint8_t Start_Offset_Tilting_Timer;
+uint8_t Start_Hold_Curing_Timer;
+uint8_t Start_Offset_Rampopen_Timer;
+uint8_t Start_Offset_Sliderout_Timer;
+uint8_t Start_Offset_EjectionIn_Timer;
+uint8_t Start_Offset_Ejectionout_Timer;
 
 void Auto_business_logic(const Hw_Inputs);
 void Manual_business_logic(const Hw_Inputs);
@@ -200,11 +213,37 @@ void Auto_business_logic(const Hw_Inputs input_status)
 				current_state_auto=1;
 			}
 		break;
-		case 1://Check preconditions
+		case 1:
+			if(SLIDERVALVE){
+				HAL_GPIO_WritePin(GPIOD,RampOpen_valve_Pin,GPIO_PIN_SET);
+				Start_Offset_Slider_Timer = 1;
+				current_state_auto=2;
+			}
+			else
+			{
+				current_state_auto=3;
+			}
+		break;
+		case 2://Offset timer for slider valve
+			if(Complete_Offset_Timer_Slider==1)
+			{
+				Complete_Offset_Timer_Slider=0;
+				current_state_auto=3;
+			}
+			if(SLIDERVALVE==0){
+				current_state_auto=3;
+			}
+		break;
+		case 3://Check preconditions
 			if((input_status.Ram_Close_Sensor== GPIO_PIN_SET)&&(input_status.Ram_Open_Sensor == GPIO_PIN_RESET))
 			{
-
+				HAL_GPIO_WritePin(GPIOD,RampCLose_valve_Pin,GPIO_PIN_SET);
+				current_state_auto=4;
+				Start_Offset_RampClose_Timer=1;
 			}
+		break;
+		case 4:
+
 		break;
 
 		default:

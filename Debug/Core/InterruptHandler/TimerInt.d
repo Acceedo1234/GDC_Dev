@@ -25,7 +25,8 @@ Core/InterruptHandler/TimerInt.o: ../Core/InterruptHandler/TimerInt.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- ../Core/InterruptHandler/TimerInt.h
+ ../Core/InterruptHandler/TimerInt.h \
+ D:/SourceTree/gdc_dev/Core/Src/app/logic/ace_businesslogic.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -54,3 +55,4 @@ Core/InterruptHandler/TimerInt.o: ../Core/InterruptHandler/TimerInt.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/InterruptHandler/TimerInt.h:
+D:/SourceTree/gdc_dev/Core/Src/app/logic/ace_businesslogic.h:

@@ -19,4 +19,15 @@ extern uint16_t SLiderout;
 extern uint16_t Ejectionon;
 extern uint16_t Ejectionoff;
 
+extern uint8_t Start_Offset_Slider_Timer;
+extern uint8_t Start_Offset_RampClose_Timer;
+extern uint8_t Start_Offset_Tilting_Timer;
+extern uint8_t Start_Hold_Pouringwait_Timer;
+extern uint8_t Start_Offset_Tilting_Timer;
+extern uint8_t Start_Hold_Curing_Timer;
+extern uint8_t Start_Offset_Rampopen_Timer;
+extern uint8_t Start_Offset_Sliderout_Timer;
+extern uint8_t Start_Offset_EjectionIn_Timer;
+extern uint8_t Start_Offset_Ejectionout_Timer;
+
 #endif /* SRC_APP_LOGIC_ACE_BUSINESSLOGIC_H_ */
