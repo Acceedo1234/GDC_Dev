@@ -89,8 +89,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			Flag1Sec = 1;
 
 			if(Start_Offset_Slider_Timer)
-			{
-				if(++Start_Offset_Slider_Counter >= Set_Offset_Slider_Time)
+			{//Set_Offset_Slider_Time
+				if(++Start_Offset_Slider_Counter >= sliderin)
 				{
 					Start_Offset_Slider_Counter=0;
 					Start_Offset_Slider_Timer=0;
@@ -107,8 +107,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				}
 			}
 			if(Start_Offset_Tiltingup_Timer)
-			{
-				if(++Start_Offset_Tiltingup_Counter >= Set_Offset_Tiltingup_Timer)
+			{//Set_Offset_Tiltingup_Timer
+				if(++Start_Offset_Tiltingup_Counter >= TIltingup)
 				{
 					Start_Offset_Tiltingup_Timer=0;
 					Start_Offset_Tiltingup_Counter=0;
@@ -125,8 +125,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				}
 			}
 			if(Start_Offset_Tilting_Timer)
-			{
-				if(++Start_Offset_Tilting_Counter >= Set_Offset_Tilting_Timer)
+			{//Set_Offset_Tilting_Timer
+				if(++Start_Offset_Tilting_Counter >= tinltingdown)
 				{
 					Start_Offset_Tilting_Timer=0;
 					Start_Offset_Tilting_Counter=0;
@@ -134,8 +134,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				}
 			}
 			if(Start_Hold_Curing_Timer)
-			{
-				if(++Start_Hold_Curing_Counter >= Set_Hold_Curing_Timer)
+			{//Set_Hold_Curing_Timer
+				if(++Start_Hold_Curing_Counter >= CuringTime)
 				{
 					Start_Hold_Curing_Timer=0;
 					Start_Hold_Curing_Counter=0;
@@ -152,8 +152,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				}
 			}
 			if(Start_Offset_Sliderout_Timer)
-			{
-				if(++Start_Offset_Sliderout_Counter >= Set_Offset_Sliderout_Timer)
+			{//Set_Offset_Sliderout_Timer
+				if(++Start_Offset_Sliderout_Counter >=SLiderout)
 				{
 					Start_Offset_Sliderout_Timer=0;
 					Start_Offset_Sliderout_Counter=0;
@@ -161,17 +161,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				}
 			}
 			if(Start_Offset_EjectionIn_Timer)
-			{
-				if(++Start_Offset_EjectionIn_Counter >= Set_Offset_EjectionIn_Timer)
+			{//Set_Offset_EjectionIn_Timer
+				if(++Start_Offset_EjectionIn_Counter >= Ejectionon)
 				{
 					Start_Offset_EjectionIn_Timer=0;
 					Start_Offset_EjectionIn_Counter=0;
 					Complete_Offset_EjectionIn_Timer=1;
 				}
 			}
-			if(Start_Offset_Ejectionout_Timer)
+			if(Start_Offset_Ejectionout_Timer)// Set_Offset_Ejectionout_Timer
 			{
-				if(++Start_Offset_Ejectionout_Counter >= Set_Offset_Ejectionout_Timer)
+				if(++Start_Offset_Ejectionout_Counter >= Ejectionoff)
 				{
 					Start_Offset_Ejectionout_Timer=0;
 					Start_Offset_Ejectionout_Counter=0;
