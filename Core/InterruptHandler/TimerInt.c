@@ -9,7 +9,16 @@
 #include "TimerInt.h"
 #include "ace_businesslogic.h"
 
-#define Set_Offset_Slider_Time 300
+#define Set_Offset_Slider_Time 			300
+#define Set_Offset_RampClose_Timer 		200
+#define Set_Offset_Tiltingup_Timer 		200
+#define Set_Hold_Pouringwait_Timer 		200
+#define Set_Offset_Tilting_Timer 		200
+#define Set_Hold_Curing_Timer 			200
+#define Set_Offset_Rampopen_Timer 		200
+#define Set_Offset_Sliderout_Timer  	200
+#define Set_Offset_EjectionIn_Timer 	200
+#define Set_Offset_Ejectionout_Timer 	200
 
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
@@ -25,14 +34,30 @@ uint8_t CycleStart_Switch;
 uint8_t Count20ms;
 uint8_t Count500ms;
 uint16_t Start_Offset_Slider_Counter;
+uint8_t Start_Offset_RampClose_Counter;
+uint8_t Start_Offset_Tiltingup_Counter;
+uint8_t Start_Hold_Poring_Counter;
+uint8_t Start_Offset_Tilting_Counter;
+uint8_t Start_Hold_Curing_Counter;
+uint8_t Start_Offset_Rampopen_Counter;
+uint8_t Start_Offset_Sliderout_Counter;
+uint8_t Start_Offset_EjectionIn_Counter;
+uint8_t Start_Offset_Ejectionout_Counter;
 
 uint8_t Flag1Sec;
 uint8_t Flag200ms;
 uint8_t Flag5msTM2;
 uint8_t Flag500ms;
 uint8_t Complete_Offset_Timer_Slider;
-
-extern uint16_t Production;
+uint8_t Complete_Offset_RampClose_Timer;
+uint8_t Complete_Offset_Tiltingup_Timer;
+uint8_t Complete_Hold_Pouringwait_Timer;
+uint8_t Complete_Offset_Tilting_Timer;
+uint8_t Complete_Hold_Curing_Timer;
+uint8_t Complete_Offset_Rampopen_Timer;
+uint8_t Complete_Offset_Sliderout_Timer;
+uint8_t Complete_Offset_EjectionIn_Timer;
+uint8_t Complete_Offset_Ejectionout_Timer;
 
 void TimerApplicationInit(void)
 {
@@ -62,7 +87,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			//HAL_GPIO_TogglePin(GPIOD,Relay_1_Pin);
 			Count1Sec=0;
 			Flag1Sec = 1;
-			if(++Production > 1000){Production=0;}
+
 			if(Start_Offset_Slider_Timer)
 			{
 				if(++Start_Offset_Slider_Counter >= Set_Offset_Slider_Time)
@@ -72,13 +97,93 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 					Complete_Offset_Timer_Slider=1;
 				}
 			}
+			if(Start_Offset_RampClose_Timer)
+			{
+				if(++Start_Offset_RampClose_Counter >= Set_Offset_RampClose_Timer)
+				{
+					Start_Offset_RampClose_Timer=0;
+					Start_Offset_RampClose_Counter=0;
+					Complete_Offset_RampClose_Timer=1;
+				}
+			}
+			if(Start_Offset_Tiltingup_Timer)
+			{
+				if(++Start_Offset_Tiltingup_Counter >= Set_Offset_Tiltingup_Timer)
+				{
+					Start_Offset_Tiltingup_Timer=0;
+					Start_Offset_Tiltingup_Counter=0;
+					Complete_Offset_Tiltingup_Timer=1;
+				}
+			}
+			if(Start_Hold_Pouringwait_Timer)
+			{
+				if(++Start_Hold_Poring_Counter >= Set_Hold_Pouringwait_Timer)
+				{
+					Start_Hold_Pouringwait_Timer=0;
+					Start_Hold_Poring_Counter=0;
+					Complete_Hold_Pouringwait_Timer=1;
+				}
+			}
+			if(Start_Offset_Tilting_Timer)
+			{
+				if(++Start_Offset_Tilting_Counter >= Set_Offset_Tilting_Timer)
+				{
+					Start_Offset_Tilting_Timer=0;
+					Start_Offset_Tilting_Counter=0;
+					Complete_Offset_Tilting_Timer=1;
+				}
+			}
+			if(Start_Hold_Curing_Timer)
+			{
+				if(++Start_Hold_Curing_Counter >= Set_Hold_Curing_Timer)
+				{
+					Start_Hold_Curing_Timer=0;
+					Start_Hold_Curing_Counter=0;
+					Complete_Hold_Curing_Timer=1;
+				}
+			}
+			if(Start_Offset_Rampopen_Timer)
+			{
+				if(++Start_Offset_Rampopen_Counter >= Set_Hold_Curing_Timer)
+				{
+					Start_Offset_Rampopen_Timer=0;
+					Start_Offset_Rampopen_Counter=0;
+					Complete_Offset_Rampopen_Timer=1;
+				}
+			}
+			if(Start_Offset_Sliderout_Timer)
+			{
+				if(++Start_Offset_Sliderout_Counter >= Set_Offset_Sliderout_Timer)
+				{
+					Start_Offset_Sliderout_Timer=0;
+					Start_Offset_Sliderout_Counter=0;
+					Complete_Offset_Sliderout_Timer=1;
+				}
+			}
+			if(Start_Offset_EjectionIn_Timer)
+			{
+				if(++Start_Offset_EjectionIn_Counter >= Set_Offset_EjectionIn_Timer)
+				{
+					Start_Offset_EjectionIn_Timer=0;
+					Start_Offset_EjectionIn_Counter=0;
+					Complete_Offset_EjectionIn_Timer=1;
+				}
+			}
+			if(Start_Offset_Ejectionout_Timer)
+			{
+				if(++Start_Offset_Ejectionout_Counter >= Set_Offset_Ejectionout_Timer)
+				{
+					Start_Offset_Ejectionout_Timer=0;
+					Start_Offset_Ejectionout_Counter=0;
+					Complete_Offset_Ejectionout_Timer=1;
+				}
+			}
 		}
 		if(++Count500ms >= 4)
 		{
 			Count500ms=0;
 			Flag500ms = 1;
 		}
-		InputOutputTest1();
 	}
 }
 

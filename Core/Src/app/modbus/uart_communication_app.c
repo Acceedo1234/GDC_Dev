@@ -24,7 +24,7 @@ extern UART_HandleTypeDef huart1;
 #define NO_OF_READDATA 	 0x0A
 #define NO_OF_WRITEDATA  0x0A
 
-uint16_t Production;
+
 uint8_t DWINRxData[64];
 uint16_t RxNoOfData;
 
