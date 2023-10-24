@@ -48,6 +48,7 @@ typedef struct
 	GPIO_PinState Robo_Acknowledgment;
 	GPIO_PinState Ram_Open_Sensor;
 	GPIO_PinState Ram_Close_Sensor;
+	GPIO_PinState TiltingUp_Sensor;
 	GPIO_PinState TiltingDown_Sensor;
 }Hw_Inputs;
 
@@ -196,7 +197,8 @@ void gdc_businesslogic(void)
 		Inputs_Status = Inputs_Status |(1 <<15);
 	}
 	input.Ram_Close_Sensor 			=	HAL_GPIO_ReadPin(GPIOC,Rampclose_sensor_Pin);
-	input.TiltingDown_Sensor 			=	HAL_GPIO_ReadPin(GPIOC,Tiltingdown_sensor_Pin);
+	input.TiltingUp_Sensor			=	HAL_GPIO_ReadPin(GPIOC,TiltingUp_Sensor_Pin);
+	input.TiltingDown_Sensor 		=	HAL_GPIO_ReadPin(GPIOC,Tiltingdown_sensor_Pin);
 	if(input.Auto_Manual == GPIO_PIN_SET){//execute auto code
 		Auto_business_logic(input);
 	}
