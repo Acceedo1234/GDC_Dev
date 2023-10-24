@@ -71,8 +71,8 @@ void ModbusFrame(void)
 			bufftx[13] = (Inputs_Status & 0xff00)>>8;
 			bufftx[14] = (Inputs_Status & 0xff);
 
-			bufftx[15] = (0 & 0xff00)>>8;
-			bufftx[16] = (0 & 0xff);
+			bufftx[15] = (Inputs_Status_2 & 0xff00)>>8;
+			bufftx[16] = (Inputs_Status_2 & 0xff);
 
 			bufftx[17] = (CuringTime & 0xff00)>>8;//2005
 			bufftx[18] = (CuringTime & 0xff);

@@ -10,7 +10,7 @@
 
 extern void gdc_businesslogic(void);
 
-extern uint16_t Inputs_Status;
+extern uint16_t Inputs_Status,Inputs_Status_2;
 extern uint16_t TIltingup;
 extern uint16_t tinltingdown;
 extern uint16_t CuringTime;

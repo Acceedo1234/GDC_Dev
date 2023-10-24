@@ -62,7 +62,7 @@ typedef struct
 Hw_Inputs input;
 Hw_Outputs output;
 uint16_t Inputs_Status;
-uint16_t Inputs_Status;
+uint16_t Inputs_Status_2;
 
 uint16_t TIltingup;
 uint16_t tinltingdown;
@@ -197,8 +197,26 @@ void gdc_businesslogic(void)
 		Inputs_Status = Inputs_Status |(1 <<15);
 	}
 	input.Ram_Close_Sensor 			=	HAL_GPIO_ReadPin(GPIOC,Rampclose_sensor_Pin);
-	input.TiltingUp_Sensor			=	HAL_GPIO_ReadPin(GPIOC,TiltingUp_Sensor_Pin);
-	input.TiltingDown_Sensor 		=	HAL_GPIO_ReadPin(GPIOC,Tiltingdown_sensor_Pin);
+	if(input.Ram_Close_Sensor == GPIO_PIN_SET){
+		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 0);
+
+	}else{
+		Inputs_Status_2 = Inputs_Status_2 |(1 <<0);
+	}
+	input.TiltingUp_Sensor			=	HAL_GPIO_ReadPin(GPIOA,TiltingUp_Sensor_Pin);
+	if(input.TiltingUp_Sensor == GPIO_PIN_SET){
+		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 1);
+
+	}else{
+		Inputs_Status_2 = Inputs_Status_2 |(1 <<1);
+	}
+	input.TiltingDown_Sensor 		=	HAL_GPIO_ReadPin(GPIOA,Tiltingdown_sensor_Pin);
+	if(input.TiltingDown_Sensor == GPIO_PIN_SET){
+		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 2);
+
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<2);
+		}
 	if(input.Auto_Manual == GPIO_PIN_SET){//execute auto code
 		Auto_business_logic(input);
 	}

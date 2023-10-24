@@ -1,3 +1,3 @@
 ../Core/Src/app/logic/ace_businesslogic.c:92:6:gdc_businesslogic	16	static
-../Core/Src/app/logic/ace_businesslogic.c:211:6:Auto_business_logic	8	static
-../Core/Src/app/logic/ace_businesslogic.c:375:6:Manual_business_logic	8	static
+../Core/Src/app/logic/ace_businesslogic.c:229:6:Auto_business_logic	8	static
+../Core/Src/app/logic/ace_businesslogic.c:393:6:Manual_business_logic	8	static
