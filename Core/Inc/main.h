@@ -63,6 +63,8 @@ void Error_Handler(void);
 #define StationInfo_Sensor_GPIO_Port GPIOA
 #define Tiltingdown_sensor_Pin GPIO_PIN_2
 #define Tiltingdown_sensor_GPIO_Port GPIOA
+#define TiltingUp_Sensor_Pin GPIO_PIN_3
+#define TiltingUp_Sensor_GPIO_Port GPIOA
 #define _W25QXX_CS_PIN_Pin_Pin GPIO_PIN_4
 #define _W25QXX_CS_PIN_Pin_GPIO_Port GPIOA
 #define Rampclose_sensor_Pin GPIO_PIN_4
