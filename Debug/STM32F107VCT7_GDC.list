@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001f46b  00000000  00000000  00035ef0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00012f03  00000000  00000000  0005535b  2**0
+ 17 .debug_line   00012f9b  00000000  00000000  0005535b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000b9fae  00000000  00000000  0006825e  2**0
+ 18 .debug_str    000b9fca  00000000  00000000  000682f6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  0012220c  2**0
+ 19 .comment      00000050  00000000  00000000  001222c0  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000412c  00000000  00000000  0012225c  2**2
+ 20 .debug_frame  0000412c  00000000  00000000  00122310  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1815,10 +1815,10 @@ void gdc_businesslogic(void)
  8000f34:	461a      	mov	r2, r3
  8000f36:	4b1c      	ldr	r3, [pc, #112]	; (8000fa8 <gdc_businesslogic+0x4f0>)
  8000f38:	701a      	strb	r2, [r3, #0]
-	if(output.Ram_Close_Valve == GPIO_PIN_SET){
+	if(output.Ram_Close_Valve == GPIO_PIN_RESET){
  8000f3a:	4b1b      	ldr	r3, [pc, #108]	; (8000fa8 <gdc_businesslogic+0x4f0>)
  8000f3c:	781b      	ldrb	r3, [r3, #0]
- 8000f3e:	2b01      	cmp	r3, #1
+ 8000f3e:	2b00      	cmp	r3, #0
  8000f40:	d107      	bne.n	8000f52 <gdc_businesslogic+0x49a>
 		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 6);
  8000f42:	4b17      	ldr	r3, [pc, #92]	; (8000fa0 <gdc_businesslogic+0x4e8>)
@@ -1844,10 +1844,10 @@ void gdc_businesslogic(void)
  8000f6c:	461a      	mov	r2, r3
  8000f6e:	4b0e      	ldr	r3, [pc, #56]	; (8000fa8 <gdc_businesslogic+0x4f0>)
  8000f70:	705a      	strb	r2, [r3, #1]
-	if(output.Ram_Open_Valve == GPIO_PIN_SET){
+	if(output.Ram_Open_Valve == GPIO_PIN_RESET){
  8000f72:	4b0d      	ldr	r3, [pc, #52]	; (8000fa8 <gdc_businesslogic+0x4f0>)
  8000f74:	785b      	ldrb	r3, [r3, #1]
- 8000f76:	2b01      	cmp	r3, #1
+ 8000f76:	2b00      	cmp	r3, #0
  8000f78:	d118      	bne.n	8000fac <gdc_businesslogic+0x4f4>
 		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 7);
  8000f7a:	4b09      	ldr	r3, [pc, #36]	; (8000fa0 <gdc_businesslogic+0x4e8>)
@@ -1882,10 +1882,10 @@ void gdc_businesslogic(void)
  8000fc6:	461a      	mov	r2, r3
  8000fc8:	4b6c      	ldr	r3, [pc, #432]	; (800117c <gdc_businesslogic+0x6c4>)
  8000fca:	709a      	strb	r2, [r3, #2]
-		if(output.Tilting_Up_Valve == GPIO_PIN_SET){
+		if(output.Tilting_Up_Valve == GPIO_PIN_RESET){
  8000fcc:	4b6b      	ldr	r3, [pc, #428]	; (800117c <gdc_businesslogic+0x6c4>)
  8000fce:	789b      	ldrb	r3, [r3, #2]
- 8000fd0:	2b01      	cmp	r3, #1
+ 8000fd0:	2b00      	cmp	r3, #0
  8000fd2:	d107      	bne.n	8000fe4 <gdc_businesslogic+0x52c>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 8);
  8000fd4:	4b67      	ldr	r3, [pc, #412]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -1911,10 +1911,10 @@ void gdc_businesslogic(void)
  8000ffe:	461a      	mov	r2, r3
  8001000:	4b5e      	ldr	r3, [pc, #376]	; (800117c <gdc_businesslogic+0x6c4>)
  8001002:	70da      	strb	r2, [r3, #3]
-		if(output.Tilting_Down_Valve == GPIO_PIN_SET){
+		if(output.Tilting_Down_Valve == GPIO_PIN_RESET){
  8001004:	4b5d      	ldr	r3, [pc, #372]	; (800117c <gdc_businesslogic+0x6c4>)
  8001006:	78db      	ldrb	r3, [r3, #3]
- 8001008:	2b01      	cmp	r3, #1
+ 8001008:	2b00      	cmp	r3, #0
  800100a:	d107      	bne.n	800101c <gdc_businesslogic+0x564>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 9);
  800100c:	4b59      	ldr	r3, [pc, #356]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -1940,10 +1940,10 @@ void gdc_businesslogic(void)
  8001036:	461a      	mov	r2, r3
  8001038:	4b50      	ldr	r3, [pc, #320]	; (800117c <gdc_businesslogic+0x6c4>)
  800103a:	711a      	strb	r2, [r3, #4]
-		if(output.Slider_In_Valve == GPIO_PIN_SET){
+		if(output.Slider_In_Valve == GPIO_PIN_RESET){
  800103c:	4b4f      	ldr	r3, [pc, #316]	; (800117c <gdc_businesslogic+0x6c4>)
  800103e:	791b      	ldrb	r3, [r3, #4]
- 8001040:	2b01      	cmp	r3, #1
+ 8001040:	2b00      	cmp	r3, #0
  8001042:	d107      	bne.n	8001054 <gdc_businesslogic+0x59c>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 10);
  8001044:	4b4b      	ldr	r3, [pc, #300]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -1969,10 +1969,10 @@ void gdc_businesslogic(void)
  800106e:	461a      	mov	r2, r3
  8001070:	4b42      	ldr	r3, [pc, #264]	; (800117c <gdc_businesslogic+0x6c4>)
  8001072:	715a      	strb	r2, [r3, #5]
-		if(output.Slider_Out_Valve == GPIO_PIN_SET){
+		if(output.Slider_Out_Valve == GPIO_PIN_RESET){
  8001074:	4b41      	ldr	r3, [pc, #260]	; (800117c <gdc_businesslogic+0x6c4>)
  8001076:	795b      	ldrb	r3, [r3, #5]
- 8001078:	2b01      	cmp	r3, #1
+ 8001078:	2b00      	cmp	r3, #0
  800107a:	d107      	bne.n	800108c <gdc_businesslogic+0x5d4>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 11);
  800107c:	4b3d      	ldr	r3, [pc, #244]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -1998,10 +1998,10 @@ void gdc_businesslogic(void)
  80010a4:	461a      	mov	r2, r3
  80010a6:	4b35      	ldr	r3, [pc, #212]	; (800117c <gdc_businesslogic+0x6c4>)
  80010a8:	719a      	strb	r2, [r3, #6]
-		if(output.Ejection_In_Valve == GPIO_PIN_SET){
+		if(output.Ejection_In_Valve == GPIO_PIN_RESET){
  80010aa:	4b34      	ldr	r3, [pc, #208]	; (800117c <gdc_businesslogic+0x6c4>)
  80010ac:	799b      	ldrb	r3, [r3, #6]
- 80010ae:	2b01      	cmp	r3, #1
+ 80010ae:	2b00      	cmp	r3, #0
  80010b0:	d107      	bne.n	80010c2 <gdc_businesslogic+0x60a>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 12);
  80010b2:	4b30      	ldr	r3, [pc, #192]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -2027,10 +2027,10 @@ void gdc_businesslogic(void)
  80010da:	461a      	mov	r2, r3
  80010dc:	4b27      	ldr	r3, [pc, #156]	; (800117c <gdc_businesslogic+0x6c4>)
  80010de:	71da      	strb	r2, [r3, #7]
-		if(output.Ejection_Out_Valve == GPIO_PIN_SET){
+		if(output.Ejection_Out_Valve == GPIO_PIN_RESET){
  80010e0:	4b26      	ldr	r3, [pc, #152]	; (800117c <gdc_businesslogic+0x6c4>)
  80010e2:	79db      	ldrb	r3, [r3, #7]
- 80010e4:	2b01      	cmp	r3, #1
+ 80010e4:	2b00      	cmp	r3, #0
  80010e6:	d107      	bne.n	80010f8 <gdc_businesslogic+0x640>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 13);
  80010e8:	4b22      	ldr	r3, [pc, #136]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -2056,10 +2056,10 @@ void gdc_businesslogic(void)
  8001112:	461a      	mov	r2, r3
  8001114:	4b19      	ldr	r3, [pc, #100]	; (800117c <gdc_businesslogic+0x6c4>)
  8001116:	721a      	strb	r2, [r3, #8]
-		if(output.Motor_On_Off_valve == GPIO_PIN_SET){
+		if(output.Motor_On_Off_valve == GPIO_PIN_RESET){
  8001118:	4b18      	ldr	r3, [pc, #96]	; (800117c <gdc_businesslogic+0x6c4>)
  800111a:	7a1b      	ldrb	r3, [r3, #8]
- 800111c:	2b01      	cmp	r3, #1
+ 800111c:	2b00      	cmp	r3, #0
  800111e:	d107      	bne.n	8001130 <gdc_businesslogic+0x678>
 			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 14);
  8001120:	4b14      	ldr	r3, [pc, #80]	; (8001174 <gdc_businesslogic+0x6bc>)
@@ -2077,9 +2077,9 @@ void gdc_businesslogic(void)
  8001138:	b29a      	uxth	r2, r3
  800113a:	4b0e      	ldr	r3, [pc, #56]	; (8001174 <gdc_businesslogic+0x6bc>)
  800113c:	801a      	strh	r2, [r3, #0]
-	output.Robo_Status_Valve 		=	GPIO_PIN_SET;
+	output.Robo_Status_Valve 		=	GPIO_PIN_RESET;
  800113e:	4b0f      	ldr	r3, [pc, #60]	; (800117c <gdc_businesslogic+0x6c4>)
- 8001140:	2201      	movs	r2, #1
+ 8001140:	2200      	movs	r2, #0
  8001142:	725a      	strb	r2, [r3, #9]
 		if(output.Robo_Status_Valve == GPIO_PIN_SET){
  8001144:	4b0d      	ldr	r3, [pc, #52]	; (800117c <gdc_businesslogic+0x6c4>)
@@ -2173,9 +2173,9 @@ void Auto_business_logic(const Hw_Inputs input_status)
  8001210:	e103      	b.n	800141a <Auto_business_logic+0x296>
 		case 1:
 			if(SLIDERVALVE){
-				HAL_GPIO_WritePin(GPIOD,RampOpen_valve_Pin,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOD,SliderIn_valve_Pin,GPIO_PIN_SET);
  8001212:	2201      	movs	r2, #1
- 8001214:	f44f 6180 	mov.w	r1, #1024	; 0x400
+ 8001214:	f44f 4100 	mov.w	r1, #32768	; 0x8000
  8001218:	488f      	ldr	r0, [pc, #572]	; (8001458 <Auto_business_logic+0x2d4>)
  800121a:	f002 f850 	bl	80032be <HAL_GPIO_WritePin>
 				Start_Offset_Slider_Timer = 1;
@@ -4906,99 +4906,44 @@ void SystemInit (void)
  8002176:	4770      	bx	lr
 
 08002178 <Reset_Handler>:
-  .weak Reset_Handler
-  .type Reset_Handler, %function
-Reset_Handler:
-
-/* Call the clock system initialization function.*/
-    bl  SystemInit
  8002178:	f7ff fff8 	bl	800216c <SystemInit>
-
-/* Copy the data segment initializers from flash to SRAM */
-  ldr r0, =_sdata
  800217c:	480b      	ldr	r0, [pc, #44]	; (80021ac <LoopFillZerobss+0xe>)
-  ldr r1, =_edata
  800217e:	490c      	ldr	r1, [pc, #48]	; (80021b0 <LoopFillZerobss+0x12>)
-  ldr r2, =_sidata
  8002180:	4a0c      	ldr	r2, [pc, #48]	; (80021b4 <LoopFillZerobss+0x16>)
-  movs r3, #0
  8002182:	2300      	movs	r3, #0
-  b LoopCopyDataInit
  8002184:	e002      	b.n	800218c <LoopCopyDataInit>
 
 08002186 <CopyDataInit>:
-
-CopyDataInit:
-  ldr r4, [r2, r3]
  8002186:	58d4      	ldr	r4, [r2, r3]
-  str r4, [r0, r3]
  8002188:	50c4      	str	r4, [r0, r3]
-  adds r3, r3, #4
  800218a:	3304      	adds	r3, #4
 
 0800218c <LoopCopyDataInit>:
-
-LoopCopyDataInit:
-  adds r4, r0, r3
  800218c:	18c4      	adds	r4, r0, r3
-  cmp r4, r1
  800218e:	428c      	cmp	r4, r1
-  bcc CopyDataInit
  8002190:	d3f9      	bcc.n	8002186 <CopyDataInit>
-  
-/* Zero fill the bss segment. */
-  ldr r2, =_sbss
  8002192:	4a09      	ldr	r2, [pc, #36]	; (80021b8 <LoopFillZerobss+0x1a>)
-  ldr r4, =_ebss
  8002194:	4c09      	ldr	r4, [pc, #36]	; (80021bc <LoopFillZerobss+0x1e>)
-  movs r3, #0
  8002196:	2300      	movs	r3, #0
-  b LoopFillZerobss
  8002198:	e001      	b.n	800219e <LoopFillZerobss>
 
 0800219a <FillZerobss>:
-
-FillZerobss:
-  str  r3, [r2]
  800219a:	6013      	str	r3, [r2, #0]
-  adds r2, r2, #4
  800219c:	3204      	adds	r2, #4
 
 0800219e <LoopFillZerobss>:
-
-LoopFillZerobss:
-  cmp r2, r4
  800219e:	42a2      	cmp	r2, r4
-  bcc FillZerobss
  80021a0:	d3fb      	bcc.n	800219a <FillZerobss>
-
-
-/* Call static constructors */
-    bl __libc_init_array
  80021a2:	f003 fd99 	bl	8005cd8 <__libc_init_array>
-/* Call the application's entry point.*/
-  bl main
  80021a6:	f7ff fc09 	bl	80019bc <main>
-  bx lr
  80021aa:	4770      	bx	lr
-  ldr r0, =_sdata
  80021ac:	20000000 	.word	0x20000000
-  ldr r1, =_edata
  80021b0:	2000000c 	.word	0x2000000c
-  ldr r2, =_sidata
  80021b4:	08005f90 	.word	0x08005f90
-  ldr r2, =_sbss
  80021b8:	2000000c 	.word	0x2000000c
-  ldr r4, =_ebss
  80021bc:	20000270 	.word	0x20000270
 
 080021c0 <ADC1_2_IRQHandler>:
- * @retval : None
-*/
-    .section .text.Default_Handler,"ax",%progbits
-Default_Handler:
-Infinite_Loop:
-  b Infinite_Loop
  80021c0:	e7fe      	b.n	80021c0 <ADC1_2_IRQHandler>
 	...
 
