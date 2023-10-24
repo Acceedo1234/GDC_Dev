@@ -54,9 +54,16 @@ typedef struct
 
 typedef struct
 {
-	uint8_t Ram_Open_Valve;
-	uint8_t Tilting_Up_Valve;
-	uint8_t Tilting_Down_Valve;
+	GPIO_PinState Ram_Close_Valve;
+	GPIO_PinState Ram_Open_Valve;
+	GPIO_PinState Tilting_Up_Valve;
+	GPIO_PinState Tilting_Down_Valve;
+	GPIO_PinState Slider_In_Valve;
+	GPIO_PinState Slider_Out_Valve;
+	GPIO_PinState Ejection_In_Valve;
+	GPIO_PinState Ejection_Out_Valve;
+	GPIO_PinState Motor_On_Off_valve;
+	GPIO_PinState Robo_Status_Valve;
 }Hw_Outputs;
 
 Hw_Inputs input;
@@ -223,6 +230,58 @@ void gdc_businesslogic(void)
 	else{//execute manual code
 		Manual_business_logic(input);
 	}
+
+//Update the output status:
+	output.Ram_Close_Valve 		=	HAL_GPIO_ReadPin(GPIOD,RampCLose_valve_Pin);
+	if(output.Ram_Close_Valve == GPIO_PIN_SET){
+		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 6);
+		}else{
+		Inputs_Status_2 = Inputs_Status_2 |(1 <<6);}
+	output.Ram_Open_Valve 		=	HAL_GPIO_ReadPin(GPIOD,RampOpen_valve_Pin);
+	if(output.Ram_Open_Valve == GPIO_PIN_SET){
+		Inputs_Status_2 = Inputs_Status_2 & ~(1 << 7);
+		}else{
+		Inputs_Status_2 = Inputs_Status_2 |(1 <<7);}
+	output.Tilting_Up_Valve 		=	HAL_GPIO_ReadPin(GPIOD,TiltingUp_valve_Pin);
+		if(output.Tilting_Up_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 8);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<8);}
+	output.Tilting_Down_Valve		=	HAL_GPIO_ReadPin(GPIOD,TiltingDown_valve_Pin);
+		if(output.Tilting_Down_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 9);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<9);}
+	output.Slider_In_Valve		=	HAL_GPIO_ReadPin(GPIOD,SliderIn_valve_Pin);
+		if(output.Slider_In_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 10);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<10);}
+	output.Slider_Out_Valve		=	HAL_GPIO_ReadPin(GPIOD,SkiderOut_valve_Pin);
+		if(output.Slider_Out_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 11);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<11);}
+	output.Ejection_In_Valve 		=	HAL_GPIO_ReadPin(GPIOC,EjectionOn_valve_Pin);
+		if(output.Ejection_In_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 12);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<12);}
+	output.Ejection_Out_Valve 		=	HAL_GPIO_ReadPin(GPIOC,EjectionOff_valve_Pin);
+		if(output.Ejection_Out_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 13);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<13);}
+	output.Motor_On_Off_valve 		=	HAL_GPIO_ReadPin(GPIOD,MotorOn_valve_Pin);
+		if(output.Motor_On_Off_valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 14);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<14);}
+	output.Robo_Status_Valve 		=	GPIO_PIN_SET;
+		if(output.Robo_Status_Valve == GPIO_PIN_SET){
+			Inputs_Status_2 = Inputs_Status_2 & ~(1 << 15);
+		}else{
+			Inputs_Status_2 = Inputs_Status_2 |(1 <<15);}
 }
 
 

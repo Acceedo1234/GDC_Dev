@@ -62,10 +62,10 @@ void ModbusFrame(void)
 			bufftx[7] = (Production & 0xff00)>>8;
 			bufftx[8] = (Production & 0xff);
 
-			bufftx[9] = (0 & 0xff00)>>8;
+			bufftx[9]  = (0 & 0xff00)>>8;
 			bufftx[10] = (0 & 0xff);
 
-			bufftx[11] = (0 & 0xff00)>>8;
+			bufftx[11] = (0 & 0xff00)>>8;//Last pouring sec
 			bufftx[12] = (0 & 0xff);
 
 			bufftx[13] = (Inputs_Status & 0xff00)>>8;
