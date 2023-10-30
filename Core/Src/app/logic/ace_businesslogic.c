@@ -291,8 +291,11 @@ void Auto_business_logic(const Hw_Inputs input_status)
 	{
 		case 0://wait for cycle start
 			current_state_auto=0;
-			if(input_status.cycleStart == GPIO_PIN_RESET){
-				current_state_auto=1;
+			if((input_status.TiltingDown_Sensor == GPIO_PIN_RESET)&&(input_status.TiltingUp_Sensor == GPIO_PIN_SET))
+			{
+				if(input_status.cycleStart == GPIO_PIN_RESET){
+								current_state_auto=1;
+				}
 			}
 		break;
 		case 1:
@@ -310,6 +313,7 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			if(Complete_Offset_Timer_Slider==1)
 			{
 				Complete_Offset_Timer_Slider=0;
+				HAL_GPIO_WritePin(GPIOD,SliderIn_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=3;
 			}
 			if(SLIDERVALVE==0){
@@ -320,6 +324,12 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			if((input_status.Ram_Close_Sensor== GPIO_PIN_SET)&&(input_status.Ram_Open_Sensor == GPIO_PIN_RESET))
 			{
 				HAL_GPIO_WritePin(GPIOD,RampCLose_valve_Pin,GPIO_PIN_SET);
+				current_state_auto=100;//Inter logic
+			}
+		break;
+		case 100:
+			if(input_status.Ram_Close_Sensor==GPIO_PIN_RESET)
+			{
 				current_state_auto=4;
 				Start_Offset_RampClose_Timer=1;
 			}
@@ -328,18 +338,25 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			if(Complete_Offset_RampClose_Timer==1)
 			{
 				Complete_Offset_RampClose_Timer=0;
+				HAL_GPIO_WritePin(GPIOD,RampCLose_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=5;
 			}
 		break;
 		case 5://Tilting up pre-condiion
-			HAL_GPIO_WritePin(GPIOD,TiltingUp_valve_Pin,GPIO_PIN_SET);
-			Start_Offset_Tiltingup_Timer=1;
-			current_state_auto=6;
+			if(input_status.Ram_Close_Sensor==GPIO_PIN_RESET)
+			{
+				HAL_GPIO_WritePin(GPIOD,TiltingUp_valve_Pin,GPIO_PIN_SET);
+			}
+			if(input_status.TiltingUp_Sensor==GPIO_PIN_RESET){
+				Start_Offset_Tiltingup_Timer=1;
+				current_state_auto=6;
+			}
 		break;
 		case 6:
 			if(Complete_Offset_Tiltingup_Timer==1)
 			{
 				Complete_Offset_Tiltingup_Timer=0;
+				HAL_GPIO_WritePin(GPIOD,TiltingUp_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=7;
 			}
 		break;
@@ -362,21 +379,25 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			}
 		break;
 		case 9:
-			HAL_GPIO_WritePin(GPIOD,TiltingUp_valve_Pin,GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(GPIOD,TiltingDown_valve_Pin,GPIO_PIN_SET);
-			Start_Offset_Tilting_Timer =1;
-			current_state_auto=10;
+			if(input_status.TiltingDown_Sensor == GPIO_PIN_RESET){
+				Start_Offset_Tilting_Timer =1;
+				current_state_auto=10;
+			}
 		break;
 		case 10:
 			if(Complete_Offset_Tilting_Timer==1)
 			{
 				Complete_Offset_Tilting_Timer=0;
+				HAL_GPIO_WritePin(GPIOD,TiltingDown_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=11;
 			}
 		break;
 		case 11:
-			Start_Hold_Curing_Timer=1;
-			current_state_auto=12;
+			if((input_status.Ram_Close_Sensor==GPIO_PIN_RESET)&&(input_status.TiltingDown_Sensor==GPIO_PIN_RESET)){
+				Start_Hold_Curing_Timer=1;
+				current_state_auto=12;
+			}
 		break;
 		case 12:
 			if(Complete_Hold_Curing_Timer==1)
@@ -387,13 +408,16 @@ void Auto_business_logic(const Hw_Inputs input_status)
 		break;
 		case 13://Ramp open
 			HAL_GPIO_WritePin(GPIOD,RampOpen_valve_Pin,GPIO_PIN_SET);
+			if(input_status.Ram_Open_Sensor==GPIO_PIN_RESET){
 			Start_Offset_Rampopen_Timer=1;
 			current_state_auto=14;
+			}
 		break;
 		case 14:
 			if(Complete_Offset_Rampopen_Timer==1)
 			{
 				Complete_Offset_Rampopen_Timer=0;
+				HAL_GPIO_WritePin(GPIOD,RampOpen_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=15;
 			}
 		break;
@@ -424,6 +448,7 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			if(Complete_Offset_EjectionIn_Timer==1)
 			{
 				Complete_Offset_EjectionIn_Timer=0;
+				HAL_GPIO_WritePin(GPIOC,EjectionOn_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=19;
 			}
 		break;
@@ -436,6 +461,7 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			if(Complete_Offset_Ejectionout_Timer==1)
 			{
 				Complete_Offset_Ejectionout_Timer=0;
+				HAL_GPIO_WritePin(GPIOC,EjectionOff_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=21;
 			}
 		break;

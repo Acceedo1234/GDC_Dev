@@ -10,8 +10,8 @@
 #include "ace_businesslogic.h"
 
 #define Set_Offset_Slider_Time 			300
-#define Set_Offset_RampClose_Timer 		200
-#define Set_Offset_Tiltingup_Timer 		200
+#define Set_Offset_RampClose_Timer 		5
+#define Set_Offset_Tiltingup_Timer 		5
 #define Set_Hold_Pouringwait_Timer 		200
 #define Set_Offset_Tilting_Timer 		200
 #define Set_Hold_Curing_Timer 			200
