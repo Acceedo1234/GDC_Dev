@@ -321,7 +321,7 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			}
 		break;
 		case 3://Check preconditions ramp close
-			if((input_status.Ram_Close_Sensor== GPIO_PIN_SET)&&(input_status.Ram_Open_Sensor == GPIO_PIN_RESET))
+			if(input_status.Ram_Close_Sensor== GPIO_PIN_SET)
 			{
 				HAL_GPIO_WritePin(GPIOD,RampCLose_valve_Pin,GPIO_PIN_SET);
 				current_state_auto=100;//Inter logic
@@ -436,6 +436,7 @@ void Auto_business_logic(const Hw_Inputs input_status)
 			if(Complete_Offset_Sliderout_Timer==1)
 			{
 				Complete_Offset_Sliderout_Timer=0;
+				HAL_GPIO_WritePin(GPIOD,SkiderOut_valve_Pin,GPIO_PIN_RESET);
 				current_state_auto=17;
 			}
 		break;
